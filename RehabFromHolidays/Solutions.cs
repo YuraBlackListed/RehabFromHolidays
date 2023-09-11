@@ -8,19 +8,92 @@ namespace RehabFromHolidays
 {
     public class Solutions
     {
-        public int Integer8()
+        private (int, int, int) CalculateDigits(int input)
         {
-            int original = int.Parse(Console.ReadLine());
-            int reverse = original / 10 + original % 10 * 10;
-            return reverse;
+            int units = input % 10;
+            int dozens = input % 100 / 10;
+            int hundreds = input / 100;
+            return (units, dozens, hundreds);
         }
-        public int Integer27()
+
+        #region Integer
+        public int Integer1(int input)
+            => input / 100;
+        public int Integer2(int input)
+            => input / 1000;
+        public int Integer3(int input)
+            => input / 1024;
+        public int Integer4(int A, int B)
+            => A / B;
+        public int Integer5(int A, int B)
+            => A % B;
+        public (int, int) Integer6(int input)
+            => (input / 10, input % 10);
+        public (int, int) Integer7(int input)
+            => ((input / 10) + (input % 10), (input / 10) * (input % 10));
+        public int Integer8(int input)
+            => input / 10 + input % 10 * 10;
+        public int Integer9(int input)
+            => input / 100;
+        public (int, int) Integer10(int input)
+            => ((input % 10), (input % 100 / 10));
+        public (int, int) Integer11(int input)
         {
-            int k = int.Parse(Console.ReadLine());
-            int m;
-            m = ((k + 4) % 7) + 1;
-            return m;
+            (int units, int dozens, int hundreds) = CalculateDigits(input);
+            return (units + dozens + hundreds, units * dozens * hundreds);
         }
+        public int Integer12(int input)
+        {
+            (int units, int dozens, int hundreds) = CalculateDigits(input);
+            return units * 100 + dozens * 10 + hundreds;
+        }
+        public int Integer13(int input)
+        {
+            (int units, int dozens, int hundreds) = CalculateDigits(input);
+            return dozens * 100 + hundreds * 10 + units;
+        }
+        public int Integer14(int input)
+        {
+            (int units, int dozens, int hundreds) = CalculateDigits(input);
+            return units * 100 + hundreds * 10 + dozens;
+        }
+        public int Integer15(int input)
+        {
+            (int units, int dozens, int hundreds) = CalculateDigits(input);
+            return   dozens * 100 + hundreds * 10 + units;
+        }
+        public int Integer16(int input)
+            => (input % 1000) / 100;
+        public int Integer17(int input)
+            => input / 1000;
+        public int Integer18(int input)
+            => input / 1000;
+        public int Integer19(int input)
+            => input / 60;
+        public int Integer20(int input)
+            => input / 60 / 60;
+        public int Integer21(int input)
+            => input % 60;
+        public int Integer22(int input)
+            => input % 60 % 60;
+        public int Integer23(int input)
+            => input % 60 % 60 / 60;
+        public int Integer24(int input)
+            => input % 7;
+        public int Integer25(int input)
+            => (input + 3) % 7;
+        public int Integer26(int input)
+            => (input + 1) % 7;
+        public int Integer27(int input)
+            => (input + 5) % 7;
+        public int Integer28(int dayOfAYear, int weekNumberOfFirstDay)
+            => (weekNumberOfFirstDay + dayOfAYear) % 7; 
+        public int Integer29(int a, int b, int c)
+            => (a * b) / (c * c);
+        public int Integer30(int input)
+            => (input / 100) + 1;
+
+        #endregion
         public bool Boolean39()
         {
             int x1 = int.Parse(Console.ReadLine());
