@@ -94,22 +94,103 @@ namespace RehabFromHolidays
             => (input / 100) + 1;
 
         #endregion
-        public bool Boolean39()
-        {
-            int x1 = int.Parse(Console.ReadLine());
-            int y1 = int.Parse(Console.ReadLine());
-            int x2 = int.Parse(Console.ReadLine());
-            int y2 = int.Parse(Console.ReadLine());
+        #region Boolean 
 
-            if (Math.Abs(x1 - x2) == Math.Abs(y1 - y2) || (x1 == x2) || (y1 == y2))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+        public bool Boolean1(int input)
+            => input > 0;
+        public bool Boolean2(int input)
+            => input % 2 != 0;
+        public bool Boolean3(int input)
+            => input % 2 == 0;
+        public bool Boolean4(int a, int b)
+            => a > 2 && b <= 3;
+        public bool Boolean5(int a, int b)
+            => a >= 0 && b < -2;
+        public bool Boolean6(int a, int b, int c)
+            => a < b && b < c;
+        public bool Boolean7(int a, int b, int c)
+            => (a < b && b < c) || (a > b && b > c);
+        public bool Boolean8(int a, int b)
+            => a % 2 != 0 && b % 2 != 0;
+        public bool Boolean9(int a, int b)
+            => a % 2 != 0 && b % 2 != 0;
+        public bool Boolean10(int a, int b)
+            => (a % 2 != 0 && b % 2 == 0) || (a % 2 == 0 && b % 2 != 0);
+        public bool Boolean11(int a, int b)
+            => (a % 2 == 0 && b % 2 == 0) || (a % 2 != 0 && b % 2 != 0);
+        public bool Boolean12(int a, int b, int c)
+            => a > 0 && b > 0 && c > 0;
+        public bool Boolean13(int a, int b, int c)
+            => a > 0 || b > 0 || c > 0;
+        public bool Boolean14(int a, int b, int c)
+            => (a > 0 && b <= 0 && c <= 0) || (a <= 0 && b > 0 && c <= 0) || (a <= 0 && b <= 0 && c > 0);
+        public bool Boolean15(int a, int b, int c)
+            => (a > 0 && b > 0 && c <= 0) || (a <= 0 && b > 0 && c > 0) || (a > 0 && b <= 0 && c > 0);
+        public bool Boolean16(int input)
+            => input % 2 == 0 && input > 9 && input < 100;
+        public bool Boolean17(int input)
+            => input % 2 != 0 && input > 99 && input < 1000;
+        public bool Boolean18(int a, int b, int c)
+            => a == b || b == c || a == c;
+        public bool Boolean19(int a, int b, int c)
+            => a == -b || b == -c || a == -c;
+        public bool Boolean20(int input)
+        {
+            (int units, int dozens, int hundreds) = CalculateDigits(input);
+            return units != dozens && units != hundreds && dozens != hundreds;
         }
+        public bool Boolean21(int input)
+        {
+            (int units, int dozens, int hundreds) = CalculateDigits(input);
+            return units < dozens && dozens < hundreds;
+        }
+        public bool Boolean22(int input)
+        {
+            (int units, int dozens, int hundreds) = CalculateDigits(input);
+            return (units < dozens && dozens < hundreds) || (units > dozens && dozens > hundreds);
+        }
+        public bool Boolean23(int input)
+            => input == Integer12(input); 
+        public bool Boolean24(int a, int b, int c)
+            => a * b - 4 * a * c >= 0;
+        public bool Boolean25(int x, int y)
+            => x < 0 && y > 0; 
+        public bool Boolean26(int x, int y)
+            => x > 0 && y < 0; 
+        public bool Boolean27(int x, int y)
+            => (x < 0 && y > 0) || (x < 0 && y < 0);
+        public bool Boolean28(int x, int y)
+            => (x < 0 && y > 0) || (x < 0 && y < 0);
+        public bool Boolean29(int x, int y)
+            => (x > 0 && y > 0) || (x < 0 && y < 0);
+        public bool Boolean30(int a, int b, int c)
+            => a == b && c == b && c == a;
+        public bool Boolean31(int a, int b, int c)
+            => a == b || c == b || c == a;
+        public bool Boolean32(int a, int b, int c)
+            => (a == b + c) || (c == b + a) || (b == c + a);
+        public bool Boolean33(int a, int b, int c)
+            => (a + b) > c && (a + c) > b && (b + c) > a;
+        public bool Boolean34(int a, int b, int c)
+            => (a + b) > c && (a + c) > b && (b + c) > a;
+        public bool Boolean35(int x, int y)
+            => (x + y) % 2 != 0;
+        public bool Boolean36(int x1, int y1, int x2, int y2)
+            => (x1 + y1) % 2 != 0 && (x2 + y2) % 2 == 0 && (x2 + y2) % 2 != 0 && (x1 + y1) % 2 == 0;
+        public bool Boolean37(int x1, int y1, int x2, int y2)
+            => x2 - x1 <= 1 && y2 - y1 <= 1;
+        public bool Boolean38(int x1, int y1, int x2, int y2)
+            => Math.Abs(x2 - x1) == Math.Abs(y2 - y1);
+        public bool Boolean39(int x1, int y1, int x2, int y2)
+            => (x1 == x2) || (y1 == y2) || (Math.Abs(x2 - x1) == Math.Abs(y2 - y1));
+        public bool Boolean40(int x1, int y1, int x2, int y2)
+        {
+            int deltaX = Math.Abs(x2 - x1);
+            int deltaY = Math.Abs(y2 - y1);
+            return (deltaX == 2 && deltaY == 1) || (deltaX == 1 && deltaY == 2);
+        }
+        #endregion
+
         public int If18()
         {
             int a = int.Parse(Console.ReadLine());
