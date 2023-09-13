@@ -74,6 +74,21 @@ Console.WriteLine(solutions.Boolean38(1, 2, 3, 4));
 Console.WriteLine(solutions.Boolean39(1, 2, 3, 4));
 Console.WriteLine(solutions.Boolean40(1, 2, 3, 4));
 
+Console.WriteLine(solutions.If1(1));
+Console.WriteLine(solutions.If2(2));
+Console.WriteLine(solutions.If19(1, 3, 3, 3));
+Console.WriteLine(solutions.If20(1, 3, 4));
+Console.WriteLine(solutions.If21(0, 0));
+Console.WriteLine(solutions.If22(2, 2));
+Console.WriteLine(solutions.If23(0, 0, 2, 2, 3, 3));
+Console.WriteLine(solutions.If24(5));
+Console.WriteLine(solutions.If25(6));
+Console.WriteLine(solutions.If26(7));
+Console.WriteLine(solutions.If27(8));
+Console.WriteLine(solutions.If28(1900));
+Console.WriteLine(solutions.If29(10));
+Console.WriteLine(solutions.If30(333));
+
 /*solutions.Integer27();
 solutions.Boolean39();
 solutions.If18();

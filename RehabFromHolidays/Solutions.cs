@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace RehabFromHolidays
 {
@@ -190,43 +192,318 @@ namespace RehabFromHolidays
             return (deltaX == 2 && deltaY == 1) || (deltaX == 1 && deltaY == 2);
         }
         #endregion
-
-        public int If18()
+        #region If
+        public int If1(int input)
         {
-            int a = int.Parse(Console.ReadLine());
-            int b = int.Parse(Console.ReadLine());
-            int c = int.Parse(Console.ReadLine());
-
-            if (a == b)
+            if (input > 0)
+            {
+                input++;
+            }
+            return input;
+        }
+        public int If2(int input)
+        {
+            if (input > 0)
+            {
+                input++;
+            }
+            else
+            {
+                input -= 2;
+            }
+            return input;
+        }
+        public int If3(int input)
+        {
+            if (input > 0)
+            {
+                input++;
+            }
+            else if(input < 0)
+            {
+                input -= 2;
+            }
+            else
+            {
+                input = 10;
+            }
+            return input;
+        }
+        public int If4(int a, int b, int c)
+        {
+            int n = 0;
+            if (a > 0)
+            {
+                n++;
+            }
+            if (b > 0)
+            {
+                n++;
+            }
+            if (c > 0)
+            {
+                n++;
+            }
+            return n;
+        }
+        public (int, int) If5(int a, int b, int c)
+        {
+            int npos = 0;
+            int nnegative = 0;
+            if (a > 0)
+            {
+                npos++;
+            }
+            else
+            {
+                nnegative++;
+            }
+            if (b > 0)
+            {
+                npos++;
+            }
+            else
+            {
+                nnegative++;
+            }
+            if (c > 0)
+            {
+                npos++;
+            }
+            else
+            {
+                nnegative++;
+            }
+            return (npos, nnegative);
+        }
+        //Ahh, fagg it, gon do tougher stuff 
+        public int If19(int a, int b, int c, int d)
+        {
+            if (a == b && b == c)
+            {
+                return 1;
+            }
+            else if (a == b && a == d)
+            {
+                return 2;
+            }
+            else if (a == c && a == d)
             {
                 return 3;
             }
-            else if (a == c)
+            else if (b == d && b == d)
+            {
+                return 4;
+            }
+            else
+            {
+                return 5;
+            }
+        }   
+        public (int, int) If20(int a, int b, int c)
+        {
+            if (a - b < a - c)
+            {
+                return (b, a - b);
+            }
+            return (c, a - c);
+        }
+        public int If21(int x, int y)
+        {
+            if ((x == 0) && (y == 0))
+            {
+                return 0;
+            }
+            else if (x == 0)
+            {
+                return 1;
+            }
+            else if (y == 0)
             {
                 return 2;
             }
             else
             {
-                return 1;
+                return 3;
             }
         }
-        public int If27()
+        public int If22 (int x, int y)
         {
-            int x = int.Parse(Console.ReadLine());
-            if (x < 0)
-            {
-                return 0;
-            }
-            else if((x % 2) == 0)
+            if (x > 0 && y > 0)
             {
                 return 1;
+            }
+            else if (x < 0 && y > 0)
+            {
+                return 2;
+            }
+            else if (x < 0 && y < 0)
+            {
+                return 3;
             }
             else
             {
-                return -1;
+                return 4;
+            }
+        }
+        public (int,int) If23(int x1, int y1, int x2, int y2, int x3, int y3)
+        {
+            int x4 = 0;
+            int y4 = 0;
+            if (x1 != x2 && y1 != y2)
+            {
+                x4 = x3;
+                y4 = y1;
+            }
+            else if (x1 != x3 && y1 != y3)
+            {
+                x4 = x2;
+                y4 = y1;
+            }
+            else
+            {
+                x4 = x1;
+                y4 = y2;
+            }
+            return (x4, y4);
+        }
+        public double If24(int input)
+        {
+            if (input > 0)
+            {
+                return 2 * Math.Sin(input);
+            }
+            else
+            {
+                return 6 - input;
+            }
+        }
+        public int If25(int input)
+        {
+            if (input < -2 || input > 2)
+            {
+                return 2 * input;
+            }
+            else
+            {
+                return -3 * input;
             }
 
         }
+        public int If26(int input)
+        {
+            if (input <= 0)
+            {
+                return -input;
+            }
+            else if (input > 0 && input < 2)
+            {
+                return input * input;
+            }
+            else
+            {
+                return 4;
+            }
+
+        }
+        public int If27(int input)
+        {
+            if (input < 0)
+            {
+                return 0;
+            }
+            else
+            {
+                int integerPart = (int)input;
+                if (integerPart % 2 == 0)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+
+        }
+        public int If28(int input)
+        {
+            if ((input % 4 == 0 && input % 100 != 0) || (input % 400 == 0))
+            {
+                return 366;
+            }
+            else
+            {
+                return 365;
+            }
+        }
+        public string If29(int input)
+        {
+            string description;
+            if (input < 0)
+            {
+                if (input % 2 == 0)
+                {
+                    description = "negative even number";
+                }
+                else
+                {
+                    description = "negative odd number";
+                }
+            }
+            else if (input == 0)
+            {
+                description = "zero number";
+            }
+            else
+            {
+                if (input % 2 == 0)
+                {
+                    description = "positive even number";
+                }
+                else
+                {
+                    description = "positive odd number";
+                }
+            }
+            return description;
+        }
+        public string If30(int input)
+        {
+            string description;
+            if (input >= 1 && input <= 9)
+            {
+                description = "single digit number";
+            }
+            else if (input >= 10 && input <= 99)
+            {
+                if (input % 2 == 0)
+                {
+                    description = "even two-digit number";
+                }
+                else
+                {
+                    description = "odd two-digit number";
+                }
+            }
+            else if (input >= 100 && input <= 999)
+            {
+                if (input % 2 == 0)
+                {
+                    description = "even three-digit number";
+                }
+                else
+                {
+                    description = "odd three-digit number";
+                }
+            }
+            else
+            {
+                description = "The number is not in the range 1 to 999.";
+            }
+            return description;
+        }
+        #endregion
         public float For10()
         {
             int n = int.Parse(Console.ReadLine());
