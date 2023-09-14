@@ -504,6 +504,186 @@ namespace RehabFromHolidays
             return description;
         }
         #endregion
+        #region Case
+        public void Case12(int input)
+        {
+            double radius;
+            double diameter;
+            double length;
+            double area;
+
+            switch (input)
+            {
+                case 1:
+                    radius = input;
+                    diameter = 2 * radius;
+                    length = 2 * 3.14 * radius;
+                    area = 3.14 * radius * radius;
+                    break;
+                case 2:
+                    diameter = input;
+                    radius = diameter / 2;
+                    length = 2 * 3.14 * radius;
+                    area = 3.14 * radius * radius;
+                    break;
+                case 3:
+                    length = input;
+                    radius = length / (2 * 3.14);
+                    diameter = 2 * radius;
+                    area = 3.14 * radius * radius;
+                    break;
+                case 4:
+                    area = input;
+                    radius = Math.Sqrt(area / 3.14);
+                    diameter = 2 * radius;
+                    length = 2 * 3.14 * radius;
+                    break;
+                default:
+                    Console.WriteLine("Wrong element number");
+                    return;
+            }
+
+            Console.WriteLine(radius);
+            Console.WriteLine(diameter);
+            Console.WriteLine(length);
+            Console.WriteLine(area);
+        }
+        public void Case13(int input)
+        {
+            double a;
+            double c;
+            double h;
+            double s;
+
+            switch (input)
+            {
+                case 1:
+                    a = input;
+                    c = a * Math.Sqrt(2);
+                    h = c / 2;
+                    s = (c * h) / 2;
+                    break;
+                case 2:
+                    c = input;
+                    a = c / Math.Sqrt(2);
+                    h = c / 2;
+                    s = (c * h) / 2;
+                    break;
+                case 3:
+                    h = input;
+                    c = 2 * h;
+                    a = c / Math.Sqrt(2);
+                    s = (c * h) / 2;
+                    break;
+                case 4:
+                    s = input;
+                    h = Math.Sqrt((2 * s) / 2);
+                    c = 2 * h;
+                    a = c / Math.Sqrt(2);
+                    break;
+                default:
+                    Console.WriteLine("Wrong element number");
+                    return;
+            }
+
+            Console.WriteLine($"Leg (a): {a}");
+            Console.WriteLine($"Hypotenuse (c): {c}");
+            Console.WriteLine($"Height (h): {h}");
+            Console.WriteLine($"Square (S): {s}");
+        }
+        public void Case14(int input)
+        {
+            double a;
+            double r1;
+            double r2;
+            double s;
+
+            switch (input)
+            {
+                case 1:
+                    a = input;
+                    r1 = (a * Math.Sqrt(3)) / 6;
+                    r2 = 2 * r1;
+                    s = (a * a * Math.Sqrt(3)) / 4;
+                    break;
+                case 2:
+                    r1 = input;
+                    a = (r1 * 6) / Math.Sqrt(3);
+                    r2 = 2 * r1;
+                    s = (a * a * Math.Sqrt(3)) / 4;
+                    break;
+                case 3:
+                    r2 = input;
+                    r1 = r2 / 2;
+                    a = (r1 * 6) / Math.Sqrt(3);
+                    s = (a * a * Math.Sqrt(3)) / 4;
+                    break;
+                case 4:
+                    s = input;
+                    a = Math.Sqrt((4 * s) / Math.Sqrt(3));
+                    r1 = (a * Math.Sqrt(3)) / 6;
+                    r2 = 2 * r1;
+                    break;
+                default:
+                    Console.WriteLine("Wrong element number");
+                    return;
+            }
+
+            Console.WriteLine(a);
+            Console.WriteLine(r1);
+            Console.WriteLine(r2);
+            Console.WriteLine(s);
+        }
+        public void Case18(int input)
+        {
+            if (input >= 100 && input <= 999)
+            {
+                string[] hundreds = { "", "hundred", "two hundred", "three hundred", "four hundred", "five hundred", "six hundred", "seven hundred", "eight hundred", "nine hundred" };
+                string[] tens = { "", "", "twenty", "thirty", "fourty", "fifty", "sixty", "sevety", "eighty", "ninety" };
+                string[] ones = { "", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
+
+                int hundredsDigit = input / 100;
+                int tensDigit = (input % 100) / 10;
+                int onesDigit = input % 10;
+
+                string description = $"{hundreds[hundredsDigit]}";
+
+                if (tensDigit == 1)
+                {
+                    description += $" {ones[tensDigit * 10 + onesDigit]}";
+                }
+                else
+                {
+                    description += $" {tens[tensDigit]} {ones[onesDigit]}";
+                }
+
+                Console.WriteLine($"{input} — {description}");
+            }
+            else
+            {
+                Console.WriteLine("Number must be between 100 and 999");
+            }
+        }
+        public void Case19(int input)
+        {
+            string[] colors = { "green", "red", "yellow", "white", "black" };
+            string[] animals = { "rat", "cow", "tiger", "rabbit", "dragon", "snake", "horse", "sheep", "monke", "chicken", "dog", "pig" };
+
+            int startYear = 1984;
+            int cycleYears = 60;
+
+            int yearInCycle = (input - startYear) % cycleYears;
+            int colorIndex = yearInCycle / 12;
+            int animalIndex = yearInCycle % 12;
+
+            string color = colors[colorIndex];
+            string animal = animals[animalIndex];
+
+            Console.WriteLine($"{input} year — year {color} {animal}");
+        }
+
+        //Case 20: same shit, I'm too lazy to do this
+        #endregion
         public float For10()
         {
             int n = int.Parse(Console.ReadLine());

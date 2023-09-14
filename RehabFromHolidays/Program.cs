@@ -89,6 +89,14 @@ Console.WriteLine(solutions.If28(1900));
 Console.WriteLine(solutions.If29(10));
 Console.WriteLine(solutions.If30(333));
 
+solutions.Case12(3);
+solutions.Case13(3);
+solutions.Case14(4);
+solutions.Case14(4);
+solutions.Case18(456);
+solutions.Case19(1956);
+
+
 /*solutions.Integer27();
 solutions.Boolean39();
 solutions.If18();
