@@ -684,156 +684,111 @@ namespace RehabFromHolidays
 
         //Case 20: same shit, I'm too lazy to do this
         #endregion
-        public float For10()
+        #region For
+        public double For20(int input)
         {
-            int n = int.Parse(Console.ReadLine());
-            float sum = 0;
+            double sum = 0;
+            double factorial = 1;
+
+            for (int i = 1; i <= input; i++)
+            {
+                factorial *= i;
+                sum += factorial;
+            }
+
+            return sum;
+        }
+        public double For21(int input)
+        {
+            double sum = 1.0;
+            double factorial = 1.0;
+
+            for (int i = 1; i <= input; i++)
+            {
+                factorial *= i;
+                sum += 1.0 / factorial;
+            }
+
+            return sum;
+        }
+        public double For22(int n, int x)
+        {
+            double sum = 1.0;
+            double term = 1.0;
+            double factorial = 1.0;
+
             for (int i = 1; i <= n; i++)
             {
-                sum += (float)i;
+                factorial *= i;
+                term *= x;
+                term /= factorial;
+                sum += term;
             }
+
             return sum;
-            
         }
-        public float For25()
+        //same stuff till For29
+        public void For29(int a, int b, int n)
         {
-            int x = int.Parse(Console.ReadLine());
-            int n = int.Parse(Console.ReadLine());
+            double H = (b - a) / n;
 
-            float x1 = x;
-            float result = x;
+            Console.WriteLine($"Length of every line segment: {H}");
 
-            for (int i = 2; i <= n; ++i)
+            for (int i = 0; i <= n; i++)
             {
-                x1 *= -1 * x;
-                result += x1 / i;
+                double point = a + i * H;
+                Console.WriteLine(point);
             }
-            return result;
         }
-        public int While10()
+        public void For30(int a, int n, int h)
         {
-            int n = int.Parse(Console.ReadLine());
-            int k = 0;
-            int temp = 3;
+            Console.WriteLine($"Length of every line segment: {h}");
 
-            while (temp < n)
+            for (int i = 0; i <= n; i++)
             {
-                temp *= 3;
-                ++k;
+                double X = a + i * h;
+                double result = 1 - Math.Sin(X);
+                Console.WriteLine($"F({X}) = {result}");
             }
-            return k;
         }
-        public int Series23()
+        public void For31(int n)
         {
-            int n = int.Parse(Console.ReadLine());
+            double[] sequence = new double[n + 1];
+            sequence[0] = 2;
 
-            double[] array = new double[n];
-
-            for (int i = 0; i < n; i++)
+            for (int K = 1; K <= n; K++)
             {
-                array[i] = double.Parse(Console.ReadLine());
+                sequence[K] = 2 + 1 / sequence[K - 1];
             }
 
-            for (int i = 1; i < array.Length - 1; i++)
+            Console.WriteLine("Sequence elements:");
+
+            for (int K = 1; K <= n; K++)
             {
-                if (!((array[i] > array[i - 1] && array[i] > array[i + 1]) || (array[i] < array[i - 1] && array[i] < array[i + 1])))
-                {
-                    return i + 1;
-                }
+                Console.WriteLine($"A{K} = {sequence[K]}");
             }
 
-            return 0;
         }
-        public int Proc28()
+        public void For35(int n)
         {
-            int[] numbers = new int[10];
+            int[] sequence = new int[n];
+            sequence[0] = 1;
+            sequence[1] = 2;
+            sequence[2] = 3;
 
-            for (int i = 0; i < 10; i++)
+            for (int K = 3; K < n; K++)
             {
-                numbers[i] = int.Parse(Console.ReadLine());
-
-                if (numbers[i] <= 1)
-                {
-                    Console.WriteLine("Number must be more than 1. Reenter.");
-                    i--;
-                }
+                sequence[K] = sequence[K - 1] + sequence[K - 2] - 2 * sequence[K - 3];
             }
 
-            int primeCount = CountPrimes(numbers);
+            Console.WriteLine("Sequence elements:");
 
-            return primeCount;
-        }
-        private bool IsPrime(int N)
-        {
-            if (N <= 1)
-                return false;
-
-            if (N == 2)
-                return true;
-
-            if (N % 2 == 0)
-                return false;
-
-            for (int i = 3; i * i <= N; i += 2)
+            for (int K = 0; K < n; K++)
             {
-                if (N % i == 0)
-                    return false;
-            }
-
-            return true;
-        }
-        int CountPrimes(int[] numbers)
-        {
-            int count = 0;
-
-            foreach (int number in numbers)
-            {
-                if (IsPrime(number))
-                {
-                    count++;
-                }
-            }
-
-            return count;
-        }
-        public void Proc29()
-        {
-            int[] numbers = new int[5];
-
-            for (int i = 0; i < 5; i++)
-            {
-                numbers[i] = int.Parse(Console.ReadLine());
-
-                if (numbers[i] <= 0)
-                {
-                    Console.WriteLine("Number must be more than 1. Reenter.");
-                    i--;
-                }
-            }
-
-            foreach (int number in numbers)
-            {
-                int digitCount = DigitCount(number);
-                Console.WriteLine($"{number}: {digitCount} digits");
+                Console.WriteLine($"A{K + 1} = {sequence[K]}");
             }
         }
-
-        static int DigitCount(int K)
-        {
-            if (K == 0)
-                return 1;
-
-            int count = 0;
-
-            while (K > 0)
-            {
-                K /= 10;
-                count++;
-            }
-
-            return count;
-        }
-
+        #endregion
     }
 }
 

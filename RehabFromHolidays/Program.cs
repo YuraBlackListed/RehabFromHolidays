@@ -96,6 +96,14 @@ solutions.Case14(4);
 solutions.Case18(456);
 solutions.Case19(1956);
 
+Console.WriteLine(solutions.For20(3));
+Console.WriteLine(solutions.For21(3));
+Console.WriteLine(solutions.For22(3, 9));
+solutions.For29(1, 4, 5);
+solutions.For30(1, 4, 5);
+solutions.For31(4);
+solutions.For35(5);
+
 
 /*solutions.Integer27();
 solutions.Boolean39();
