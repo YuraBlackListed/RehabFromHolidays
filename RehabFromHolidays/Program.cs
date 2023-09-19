@@ -94,7 +94,7 @@ solutions.Case13(3);
 solutions.Case14(4);
 solutions.Case14(4);
 solutions.Case18(456);
-solutions.Case19(1956);
+solutions.Case19(2010);
 
 Console.WriteLine(solutions.For20(3));
 Console.WriteLine(solutions.For21(3));
@@ -103,6 +103,22 @@ solutions.For29(1, 4, 5);
 solutions.For30(1, 4, 5);
 solutions.For31(4);
 solutions.For35(5);
+
+
+solutions.While11(1);
+solutions.While13(1.0);
+solutions.While14(1.0);
+solutions.While15(1.0);
+solutions.While17(189);
+solutions.While18(189);
+solutions.While19(189);
+solutions.While20(182);
+solutions.While22(182);
+solutions.While23(3, 5);
+Console.WriteLine(solutions.While24(4));
+Console.WriteLine(solutions.While25(4));
+solutions.While28(4);
+Console.WriteLine(solutions.While30(20, 40, 20));
 
 
 /*solutions.Integer27();

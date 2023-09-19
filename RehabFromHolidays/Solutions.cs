@@ -62,7 +62,7 @@ namespace RehabFromHolidays
         public int Integer15(int input)
         {
             (int units, int dozens, int hundreds) = CalculateDigits(input);
-            return   dozens * 100 + hundreds * 10 + units;
+            return dozens * 100 + hundreds * 10 + units;
         }
         public int Integer16(int input)
             => (input % 1000) / 100;
@@ -89,7 +89,7 @@ namespace RehabFromHolidays
         public int Integer27(int input)
             => (input + 5) % 7;
         public int Integer28(int dayOfAYear, int weekNumberOfFirstDay)
-            => (weekNumberOfFirstDay + dayOfAYear) % 7; 
+            => (weekNumberOfFirstDay + dayOfAYear) % 7;
         public int Integer29(int a, int b, int c)
             => (a * b) / (c * c);
         public int Integer30(int input)
@@ -152,13 +152,13 @@ namespace RehabFromHolidays
             return (units < dozens && dozens < hundreds) || (units > dozens && dozens > hundreds);
         }
         public bool Boolean23(int input)
-            => input == Integer12(input); 
+            => input == Integer12(input);
         public bool Boolean24(int a, int b, int c)
             => a * b - 4 * a * c >= 0;
         public bool Boolean25(int x, int y)
-            => x < 0 && y > 0; 
+            => x < 0 && y > 0;
         public bool Boolean26(int x, int y)
-            => x > 0 && y < 0; 
+            => x > 0 && y < 0;
         public bool Boolean27(int x, int y)
             => (x < 0 && y > 0) || (x < 0 && y < 0);
         public bool Boolean28(int x, int y)
@@ -219,7 +219,7 @@ namespace RehabFromHolidays
             {
                 input++;
             }
-            else if(input < 0)
+            else if (input < 0)
             {
                 input -= 2;
             }
@@ -299,7 +299,7 @@ namespace RehabFromHolidays
             {
                 return 5;
             }
-        }   
+        }
         public (int, int) If20(int a, int b, int c)
         {
             if (a - b < a - c)
@@ -327,7 +327,7 @@ namespace RehabFromHolidays
                 return 3;
             }
         }
-        public int If22 (int x, int y)
+        public int If22(int x, int y)
         {
             if (x > 0 && y > 0)
             {
@@ -346,7 +346,7 @@ namespace RehabFromHolidays
                 return 4;
             }
         }
-        public (int,int) If23(int x1, int y1, int x2, int y2, int x3, int y3)
+        public (int, int) If23(int x1, int y1, int x2, int y2, int x3, int y3)
         {
             int x4 = 0;
             int y4 = 0;
@@ -789,10 +789,209 @@ namespace RehabFromHolidays
             }
         }
         #endregion
+        #region While
+        public void While11(int N)
+        {
+            int k = 1;
+            int sum = 1;
+
+            while (sum < N)
+            {
+                k++;
+                sum += k;
+            }
+            Console.WriteLine(k);
+            Console.WriteLine(sum);
+        }
+        public void While13(double A)
+        {
+            double sum = 0;
+            int k = 1;
+
+            while (sum <= A)
+            {
+                k++;
+                sum += 1.0 / k;
+            }
+
+            Console.WriteLine(k);
+            Console.WriteLine(sum);
+        }
+        public void While14(double A)
+        {
+            double sum = 0;
+            int k = 1;
+
+            while (sum < A)
+            {
+                k++;
+                sum += 1.0 / k;
+            }
+
+            k--;
+
+            Console.WriteLine(k);
+            Console.WriteLine(sum);
+        }
+        public void While15(double P)
+        {
+            double initialDeposit = 1000.0;
+            double targetAmount = 1100.0;
+            int k = 0;
+
+            while (initialDeposit < targetAmount)
+            {
+                initialDeposit += initialDeposit * (P / 100.0);
+                k++;
+            }
+
+            Console.WriteLine(k);
+            Console.WriteLine(targetAmount);
+            Console.WriteLine(initialDeposit);
+        }
+        public void While17(int N)
+        {
+            Console.WriteLine("Digits of the number N, starting from the rightmost (ones place):");
+
+            while (N > 0)
+            {
+                int digit = N % 10;
+                Console.WriteLine(digit);
+                N /= 10;
+            }
+        }
+        public void While18(int N)
+        {
+            int sumOfDigits = 0;
+            int numberOfDigits = 0;
+            int digit = N % 10;
+
+            while (N > 0)
+            {
+                sumOfDigits += digit;
+                numberOfDigits++;
+                N /= 10;
+            }
+            Console.WriteLine(numberOfDigits);
+            Console.WriteLine(sumOfDigits);
+        }
+        public void While19(int N)
+        {
+            int reversedNumber = 0;
+            while (N > 0)
+            {
+                int digit = N % 10;
+                reversedNumber = reversedNumber * 10 + digit;
+                N /= 10;
+            }
+            Console.WriteLine(reversedNumber);
+        }
+        public void While20(int N)
+        {
+            int digit = N % 10;
+            while (N > 0)
+            {
+                if (digit == 2)
+                {
+                    Console.WriteLine(true);
+                    break;
+                }
+                N /= 10;
+            }
+            
+        }
+        public void While22(int N)
+        {
+            for (int i = 2; i <= Math.Sqrt(N); i++)
+            {
+                if (N % i == 0)
+                {
+                    Console.WriteLine(true);
+                    break;
+                }
+            }
+        }
+        public void While23(int A, int B)
+        {
+            while (B != 0)
+            {
+                int temp = B;
+                B = A % B;
+                A = temp;
+            }
+            Console.WriteLine(A);
+        }
+        public bool While24(int N)
+        {
+            if (N == 0 || N == 1)
+            {
+                return true;
+            }
+
+            int F1 = 0;
+            int F2 = 1;
+
+            while (F2 < N)
+            {
+                int temp = F1;
+                F1 = F2;
+                F2 = temp + F2;
+
+                if (F2 == N)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        public int While25(int N)
+        {
+            int a = 1;
+            int b = 1;
+
+            while (true)
+            {
+                int temp = a;
+                a = b;
+                b = temp + b;
+
+                if (b > N)
+                {
+                    return b;
+                }
+            }
+        }
+        public void While28(int epsilon)
+        {
+            int k = 2;
+            double akMinus1 = 2;
+            double ak = akMinus1 + 1 / akMinus1;
+
+            while (Math.Abs(ak - akMinus1) >= epsilon)
+            {
+                akMinus1 = ak;
+                ak = akMinus1 + 1 / akMinus1;
+                k++;
+            }
+
+            Console.WriteLine(k);
+            Console.WriteLine(akMinus1);
+            Console.WriteLine(ak);
+        }
+        public int While30(int A, int B, int C)
+        {
+            int squaresInWidth = A / C;
+            int squaresInHeight = B / C;
+
+            return squaresInWidth * squaresInHeight;
+        }
+        #endregion
     }
+
 }
 
-    /*Integer 8, 27
+/*Integer 8, 27
 Boolean 39
 If 18, 27
 For 10, 25
