@@ -728,6 +728,38 @@ namespace RehabFromHolidays
             return sum;
         }
         //same stuff till For29
+        public double For27(double X, int N)
+        {
+            double sum = 0;
+            double powerX = X;
+            double factorial = 1;
+
+            for (int i = 1; i <= N; i++)
+            {
+                factorial *= 2 * i * (2 * i - 1);
+                sum += (powerX * factorial) / ((2 * i) * (2 * i + 1));
+                powerX *= X * X;
+            }
+
+            return sum;
+        }
+        public double For28(double X, int N)
+        {
+            double sum = 1;
+            double powerX = X;
+            double denominator = 2;
+
+            for (int i = 1; i <= N; i++)
+            {
+                double term = (i % 2 == 0) ? -1 : 1;
+                term *= powerX / denominator;
+                sum += term;
+                powerX *= X;
+                denominator *= 2 * (i + 1);
+            }
+
+            return sum;
+        }
         public void For29(int a, int b, int n)
         {
             double H = (b - a) / n;
@@ -987,6 +1019,77 @@ namespace RehabFromHolidays
             return squaresInWidth * squaresInHeight;
         }
         #endregion
+
+        public void Series40(int K)
+        {
+            List<int[]> sets = new List<int[]>();
+
+            for (int i = 0; i < K; i++)
+            {
+                int[] set = ReadSet();
+                sets.Add(set);
+            }
+
+            for (int i = 0; i < K; i++)
+            {
+                if (IsSawtooth(sets[i]))
+                {
+                    Console.WriteLine(sets[i].Length);
+                }
+                else
+                {
+                    int firstNonSawtooth = FindFirstNonSawtooth(sets[i]);
+                    Console.WriteLine(firstNonSawtooth);
+                }
+            }
+        }
+        static int[] ReadSet()
+        {
+            List<int> set = new List<int>();
+            int num;
+            while ((num = int.Parse(Console.ReadLine())) != 0)
+            {
+                set.Add(num);
+            }
+            return set.ToArray();
+        }
+
+        static bool IsSawtooth(int[] set)
+        {
+            if (set.Length < 3)
+            {
+                return false;
+            }
+
+            bool increasing = set[0] < set[1];
+
+            for (int i = 1; i < set.Length - 1; i++)
+            {
+                if ((increasing && set[i] >= set[i + 1]) || (!increasing && set[i] <= set[i + 1]))
+                {
+                    return false;
+                }
+                increasing = !increasing;
+            }
+
+            return true;
+        }
+
+        static int FindFirstNonSawtooth(int[] set)
+        {
+            for (int i = 0; i < set.Length; i++)
+            {
+                if (i % 2 == 0 && set[i] % 2 != 0)
+                {
+                    return set[i];
+                }
+                else if (i % 2 != 0 && set[i] % 2 == 0)
+                {
+                    return set[i];
+                }
+            }
+            return -1;
+        }
     }
 
 }

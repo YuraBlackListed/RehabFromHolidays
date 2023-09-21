@@ -99,6 +99,8 @@ solutions.Case19(2010);
 Console.WriteLine(solutions.For20(3));
 Console.WriteLine(solutions.For21(3));
 Console.WriteLine(solutions.For22(3, 9));
+solutions.For27(0.5, 10);
+solutions.For28(0.5, 10);
 solutions.For29(1, 4, 5);
 solutions.For30(1, 4, 5);
 solutions.For31(4);
