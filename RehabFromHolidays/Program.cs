@@ -123,6 +123,20 @@ solutions.While28(4);
 Console.WriteLine(solutions.While30(20, 40, 20));
 
 
+Console.WriteLine(solutions.MinMax8(new int[] { 2, 1, 2, 3 }));
+Console.WriteLine(solutions.MinMax10(new int[] { 2, 1, 2, 3 }));
+Console.WriteLine(solutions.MinMax16(new int[] { 2, 1, 2, 3 }));
+Console.WriteLine(solutions.MinMax21(new int[] { 2, 1, 2, 3 }));
+Console.WriteLine(solutions.MinMax26(new int[] { 2, 2, 3, 4, 4, 4 }));
+Console.WriteLine(solutions.MinMax27(new int[] { 0, 0, 0, 1, 1, 1, 1, 0, 0, 0  }));
+
+solutions.Array10(new int[] { 1, 2, 3, 4, 5, 6, 7, 8 });
+solutions.Array23(new int[] { 2, 2, 3, 4, 4, 4 }, 5, 10);
+Console.WriteLine(solutions.Array25(new int[] { 2, 4, 8, 16, 32 }));
+solutions.Array30(new int[] { 2, 2, 3, 4, 4, 4 });
+Console.WriteLine(solutions.Array38(new int[] { 10, 9, 8, 7, 6, 4, 5, 4, 3, 2}));
+Console.WriteLine(solutions.Array50(new int[] { 1, 2, 3, 7, 4, 8 }));
+
 /*solutions.Integer27();
 solutions.Boolean39();
 solutions.If18();

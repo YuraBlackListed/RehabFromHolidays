@@ -1019,6 +1019,261 @@ namespace RehabFromHolidays
             return squaresInWidth * squaresInHeight;
         }
         #endregion
+        #region MinMax
+        public (int, int) MinMax8(int[] numbers)
+        {
+            int min = numbers[0];
+            int firstMinIndex = 0;
+            int lastMinIndex = 0;
+
+            for (int i = 1; i < numbers.Length; i++)
+            {
+                if (numbers[i] < min)
+                {
+                    min = numbers[i];
+                    firstMinIndex = i;
+                    lastMinIndex = i;
+                }
+                else if (numbers[i] == min)
+                {
+                    lastMinIndex = i;
+                }
+            }
+            return (firstMinIndex, lastMinIndex);
+        }
+        public int MinMax10(int[] numbers)
+        {
+            int min = numbers[0];
+            int max = numbers[0];
+            int minIndex = 0;
+            int maxIndex = 0;
+
+            for (int i = 1; i < numbers.Length; i++)
+            {
+                if (numbers[i] < min)
+                {
+                    min = numbers[i];
+                    minIndex = i;
+                }
+                else if (numbers[i] > max)
+                {
+                    max = numbers[i];
+                    maxIndex = i;
+                }
+            }
+            return (minIndex < maxIndex) ? minIndex : maxIndex;
+        } 
+        public int MinMax16(int[] numbers)
+        {
+            int min = numbers[0];
+            int minIndex = 0;
+
+            for (int i = 1; i < numbers.Length; i++)
+            {
+                if (numbers[i] < min)
+                {
+                    min = numbers[i];
+                    minIndex = i;
+                }
+            }
+            return minIndex;
+        }
+        public double MinMax21(int[] numbers)
+        {
+            double minValue = numbers.Min();
+            double maxValue = numbers.Max();
+
+            int[] filteredValues = numbers.Where(val => val != minValue && val != maxValue).ToArray();
+
+            double averageValue = filteredValues.Average();
+
+            return averageValue;
+        }
+        public int MinMax26(int[] numbers)
+        {
+            int maxConsecutiveEvenCount = 0;
+            int currentConsecutiveEvenCount = 0;
+
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                if (numbers[i] % 2 == 0)
+                {
+                    currentConsecutiveEvenCount++;
+                }
+                else
+                {
+                    maxConsecutiveEvenCount = Math.Max(maxConsecutiveEvenCount, currentConsecutiveEvenCount);
+
+                    currentConsecutiveEvenCount = 0;
+                }
+            }
+
+            maxConsecutiveEvenCount = Math.Max(maxConsecutiveEvenCount, currentConsecutiveEvenCount);
+
+            if (maxConsecutiveEvenCount > 0)
+            {
+                return maxConsecutiveEvenCount;
+            }
+            return 0;
+        }
+        public (int, int) MinMax27(int[] numbers)
+        {
+            int longestSequenceStartIndex = 0;
+            int longestSequenceLength = 1;
+            int currentSequenceStartIndex = 0;
+            int currentSequenceLength = 1;
+
+            for (int i = 1; i < numbers.Length; i++)
+            {
+                if (numbers[i] == numbers[i - 1])
+                {
+                    currentSequenceLength++;
+                }
+                else
+                {
+                    if (currentSequenceLength > longestSequenceLength)
+                    {
+                        longestSequenceStartIndex = currentSequenceStartIndex;
+                        longestSequenceLength = currentSequenceLength;
+                    }
+
+                    currentSequenceStartIndex = i;
+                    currentSequenceLength = 1;
+                }
+            }
+
+            if (currentSequenceLength > longestSequenceLength)
+            {
+                longestSequenceStartIndex = currentSequenceStartIndex;
+                longestSequenceLength = currentSequenceLength;
+            }
+            return (longestSequenceStartIndex, longestSequenceLength);
+        }
+        #endregion
+        #region Array
+        public void Array10(int[] numbers)
+        {
+            Console.WriteLine("Even numbers in ascending index order:");
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                if (numbers[i] % 2 == 0)
+                {
+                    Console.WriteLine($"Index {i}: {numbers[i]}");
+                }
+            }
+
+            Console.WriteLine("Odd numbers in descending order of indices:");
+            for (int i = numbers.Length - 1; i >= 0; i--)
+            {
+                if (numbers[i] % 2 != 0)
+                {
+                    Console.WriteLine($"Index {i}: {numbers[i]}");
+                }
+            }
+        }
+        public void Array23(int[] numbers, int K, int L)
+        {
+            double sum = 0;
+            int count = 0;
+
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                if (i < K - 1 || i > L - 1)
+                {
+                    sum += numbers[i];
+                    count++;
+                }
+            }
+
+            if (count > 0)
+            {
+                double average = sum / count;
+                Console.WriteLine($"The arithmetic mean of elements, except elements with numbers from{K} to {L}: {average}");
+            }
+            else
+            {
+                Console.WriteLine("There are no elements in the specified range.");
+            }
+        }
+        public int Array25(int[] numbers)
+        {
+            bool isGeometricProgression = true;
+            int commonRatio = numbers[1] / numbers[0];
+
+            for (int i = 2; i < numbers.Length; i++)
+            {
+                if (numbers[i] != numbers[i - 1] * commonRatio)
+                {
+                    isGeometricProgression = false;
+                    break;
+                }
+            }
+
+            if (isGeometricProgression)
+            {
+                return commonRatio;
+            }
+            return 0;
+        }
+        public void Array30(int[] numbers)
+        {
+            List<int> indexes = new List<int>();
+
+            for (int i = 0; i < numbers.Length - 1; i++)
+            {
+                if (numbers[i] > numbers[i + 1])
+                {
+                    indexes.Add(i);
+                }
+            }
+
+            foreach (int index in indexes)
+            {
+                Console.WriteLine($"Index {index}: {numbers[index]}");
+            }
+
+            Console.WriteLine($"Number of such elements: {indexes.Count}");
+        }
+        public int Array38(int[] numbers)
+        {
+            int decreasingSegmentsCount = 0;
+            bool isInDecreasingSegment = false;
+
+            for (int i = 1; i < numbers.Length; i++)
+            {
+                if (numbers[i] < numbers[i - 1])
+                {
+                    if (!isInDecreasingSegment)
+                    {
+                        isInDecreasingSegment = true;
+                        decreasingSegmentsCount++;
+                    }
+                }
+                else
+                {
+                    isInDecreasingSegment = false;
+                }
+            }
+            return decreasingSegmentsCount;
+        }
+        public int Array50(int[] numbers)
+        {
+            int inversionCount = 0;
+
+            for (int i = 0; i < numbers.Length - 1; i++)
+            {
+                for (int j = i + 1; j < numbers.Length; j++)
+                {
+                    if (numbers[i] > numbers[j])
+                    {
+                        inversionCount++;
+                    }
+                }
+            }
+
+            return inversionCount;
+        }
+        #endregion
 
         public void Series40(int K)
         {
