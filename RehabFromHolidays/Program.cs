@@ -2,7 +2,7 @@
 
 Solutions solutions = new Solutions();
 
-Console.WriteLine(solutions.Integer1(120));
+/*Console.WriteLine(solutions.Integer1(120));
 Console.WriteLine(solutions.Integer2(3300));
 Console.WriteLine(solutions.Integer3(1025));
 Console.WriteLine(solutions.Integer4(12, 4));
@@ -129,21 +129,34 @@ Console.WriteLine(solutions.MinMax16(new int[] { 2, 1, 2, 3 }));
 Console.WriteLine(solutions.MinMax21(new int[] { 2, 1, 2, 3 }));
 Console.WriteLine(solutions.MinMax26(new int[] { 2, 2, 3, 4, 4, 4 }));
 Console.WriteLine(solutions.MinMax27(new int[] { 0, 0, 0, 1, 1, 1, 1, 0, 0, 0  }));
+*/
 
 solutions.Array10(new int[] { 1, 2, 3, 4, 5, 6, 7, 8 });
-solutions.Array23(new int[] { 2, 2, 3, 4, 4, 4 }, 5, 10);
+Console.WriteLine(solutions.Array18(new int[] { 11, 22, 33, 44, 55, 6, 77, 88, 99, 10 }));
+Console.WriteLine(solutions.Array19(new int[] { 3, 22, 33, 44, 55, 6, 77, 88, 99, 10 }));
+Console.WriteLine(solutions.Array20(new int[] { 2, 2, 3, 4, 4, 4 }, 1, 3));
+Console.WriteLine(solutions.Array21(new int[] { 2, 2, 3, 4, 4, 4 }, 1, 5));
+Console.WriteLine(solutions.Array22(new int[] { 2, 2, 3, 4, 5, 5 }, 2, 3));
+Console.WriteLine(solutions.Array23(new int[] { 2, 2, 3, 4, 5, 5 }, 2, 3));
+Console.WriteLine(solutions.Array24(new int[] { 1, 2, 3, 4, 5, 6 }));
 Console.WriteLine(solutions.Array25(new int[] { 2, 4, 8, 16, 32 }));
+Console.WriteLine(solutions.Array26(new int[] { 1, 2, 1, 2, 1, 2 }));
+Console.WriteLine(solutions.Array28(new int[] { 1, 4, 1, 2, 1, 8 }));
 solutions.Array30(new int[] { 2, 2, 3, 4, 4, 4 });
+Console.WriteLine(solutions.Array32(new int[] { 1, 4, 1, 2, 1, 8 }));
+Console.WriteLine(solutions.Array34(new int[] { 1, 4, 1, 2, 1, 8 }));
+Console.WriteLine(solutions.Array36(new int[] { 10, 9, 8, 7, 6, 4, 5, 4, 3, 2}));
 Console.WriteLine(solutions.Array38(new int[] { 10, 9, 8, 7, 6, 4, 5, 4, 3, 2}));
+Console.WriteLine(solutions.Array40(new int[] { 10, 9, 8, 7, 6, 4, 5, 4, 3, 2}, 11));
+Console.WriteLine(solutions.Array42(new int[] { 10, 9, 8, 7, 6, 4, 5, 4, 3, 2}, 11));
+Console.WriteLine(solutions.Array44(new int[] { 1, 2, 8, 7, 7, 4, 5, 8, 8, 2}));
+Console.WriteLine(solutions.Array48(new int[] { 10, 10, 8, 7, 7, 4, 5, 8, 8, 2}));
 Console.WriteLine(solutions.Array50(new int[] { 1, 2, 3, 7, 4, 8 }));
-
-/*solutions.Integer27();
-solutions.Boolean39();
-solutions.If18();
-solutions.If27();
-solutions.For10();
-solutions.For25();
-solutions.While10();
-solutions.Series23();
-solutions.Proc29();
-solutions.Proc28();*/
+solutions.Array52(new int[] { 1, 2, 3, 7, 4, 8 });
+solutions.Array54(new int[] { 1, 2, 3, 7, 4, 8 });
+solutions.Array58(new int[] { 1, 2, 3, 7, 4, 8 });
+solutions.Array62(new int[] { 1, -2, 3, -3, 4, 8 });
+solutions.Array70(new int[] { 1, 2, 3, 5, 4, 8 });
+solutions.Array74(new int[] { 1, 2, 3, 5, 4, 8 });
+solutions.Array76(new int[] { 1, 2, 3, 5, 4, 8 });
+solutions.Array80(new int[] { 1, 2, 3, 5, 4, 8 });

@@ -1171,29 +1171,106 @@ namespace RehabFromHolidays
                 }
             }
         }
-        public void Array23(int[] numbers, int K, int L)
+        public int Array18(int[] numbers)
         {
-            double sum = 0;
+            for (int i = 0; i < numbers.Length - 1; i++)
+            {
+                if (numbers[i] < numbers[9])
+                {
+                    return numbers[i];
+                }
+            }
+            return 0;
+        }
+        public int Array19(int[] numbers)
+        {
+            for (int i = 0; i < numbers.Length - 1; i++)
+            {
+                if (numbers[0] < numbers[i] && numbers[i] < numbers[9])
+                {
+                    return i;
+                }
+            }
+            return 0;
+        }
+        public int Array20(int[] numbers, int K, int L)
+        {
+            int sum = 0;
+
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                if (numbers[i] >= K && numbers[i] <= L)
+                {
+                    sum += numbers[i];
+                }
+            }
+            return sum;
+        }
+        public double Array21(int[] numbers, int K, int L)
+        {
+            int sum = 0;
             int count = 0;
 
             for (int i = 0; i < numbers.Length; i++)
             {
-                if (i < K - 1 || i > L - 1)
+                if (numbers[i] >= K && numbers[i] <= L)
                 {
                     sum += numbers[i];
                     count++;
                 }
             }
 
-            if (count > 0)
+            return (double)sum / count;
+        }
+        public int Array22(int[] numbers, int K, int L)
+        {
+            int sum = 0;
+
+            for (int i = 0; i < numbers.Length; i++)
             {
-                double average = sum / count;
-                Console.WriteLine($"The arithmetic mean of elements, except elements with numbers from{K} to {L}: {average}");
+                if (i < K || i > L)
+                {
+                    sum += numbers[i];
+                }
             }
-            else
+
+            return sum;
+        }
+        public double Array23(int[] numbers, int K, int L)
+        {
+            int sum = 0;
+            int count = 0;
+
+            for (int i = 0; i < numbers.Length; i++)
             {
-                Console.WriteLine("There are no elements in the specified range.");
+                if (i < K || i > L)
+                {
+                    sum += numbers[i];
+                    count++;
+                }
             }
+
+            return (double)sum / count;
+        }
+        public int Array24(int[] numbers)
+        {
+            bool isArithmeticProgression = true;
+            int commonRatio = numbers[1] - numbers[0];
+
+            for (int i = 1; i < numbers.Length; i++)
+            {
+                if (numbers[i] != numbers[i - 1] + commonRatio)
+                {
+                    isArithmeticProgression = false;
+                    break;
+                }
+            }
+
+            if (isArithmeticProgression)
+            {
+                return commonRatio;
+            }
+            return 0;
         }
         public int Array25(int[] numbers)
         {
@@ -1215,6 +1292,32 @@ namespace RehabFromHolidays
             }
             return 0;
         }
+        public int Array26(int[] numbers)
+        {
+            for (int i = 1; i < numbers.Length; i++)
+            {
+                if ((numbers[i - 1] % 2 == 0 && numbers[i] % 2 == 0) || (numbers[i - 1] % 2 != 0 && numbers[i] % 2 != 0))
+                {
+                    return i;
+                }
+            }
+
+            return 0;
+        }
+        public int Array28(int[] numbers)
+        {
+            int minEven = numbers[0];
+
+            for (int i = 2; i < numbers.Length; i += 2)
+            {
+                if (numbers[i] < minEven)
+                {
+                    minEven = numbers[i];
+                }
+            }
+
+            return minEven;
+        }
         public void Array30(int[] numbers)
         {
             List<int> indexes = new List<int>();
@@ -1233,6 +1336,62 @@ namespace RehabFromHolidays
             }
 
             Console.WriteLine($"Number of such elements: {indexes.Count}");
+        } 
+        public int Array32(int[] numbers)
+        {
+            for (int i = 1; i < numbers.Length - 1; i++)
+            {
+                if (numbers[i] < numbers[i - 1] && numbers[i] < numbers[i + 1])
+                {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
+        public int Array34(int[] numbers)
+        {
+            int maxLocalMin = int.MinValue;
+
+            for (int i = 1; i < numbers.Length - 1; i++)
+            {
+                if (numbers[i] < numbers[i - 1] && numbers[i] < numbers[i + 1])
+                {
+                    if (numbers[i] > maxLocalMin)
+                    {
+                        maxLocalMin = numbers[i];
+                    }
+                }
+            }
+
+            if (maxLocalMin == int.MinValue)
+            {
+                return -1;
+            }
+
+            return maxLocalMin;
+        }
+        public int Array36(int[] numbers)
+        {
+            int maxNotLocalExtremum = int.MinValue;
+
+            for (int i = 1; i < numbers.Length - 1; i++)
+            {
+                if (!((numbers[i] < numbers[i - 1] && numbers[i] < numbers[i + 1]) || (numbers[i] > numbers[i - 1] && numbers[i] > numbers[i + 1])))
+                {
+                    if (numbers[i] > maxNotLocalExtremum)
+                    {
+                        maxNotLocalExtremum = numbers[i];
+                    }
+                }
+            }
+
+            if (maxNotLocalExtremum == int.MinValue)
+            {
+                return 0;
+            }
+
+            return maxNotLocalExtremum;
         }
         public int Array38(int[] numbers)
         {
@@ -1256,6 +1415,98 @@ namespace RehabFromHolidays
             }
             return decreasingSegmentsCount;
         }
+        public int Array40(int[] numbers, int R)
+        {
+            int closestElement = numbers[0];
+            int minDifference = Math.Abs(numbers[0] - R);
+
+            for (int i = 1; i < numbers.Length; i++)
+            {
+                int currentDifference = Math.Abs(numbers[i] - R);
+
+                if (currentDifference < minDifference)
+                {
+                    minDifference = currentDifference;
+                    closestElement = numbers[i];
+                }
+            }
+
+            return closestElement;
+        }
+        public (int, int) Array42(int[] numbers, int R)
+        {
+            int closestSum = numbers[0] + numbers[1];
+            (int, int) closestElements = (numbers[0], numbers[1]);
+
+            for (int i = 1; i < numbers.Length - 1; i++)
+            {
+                int currentSum = numbers[i] + numbers[i + 1];
+                int currentDifference = Math.Abs(currentSum - R);
+
+                if (currentDifference < Math.Abs(closestSum - R))
+                {
+                    closestSum = currentSum;
+                    closestElements = (numbers[i], numbers[i + 1]);
+                }
+            }
+
+            return closestElements;
+        }
+        public (int, int) Array44(int[] numbers)
+        {
+            int firstDuplicate = -1;
+            int secondDuplicate = -1;
+
+            var indexDictionary = new System.Collections.Generic.Dictionary<int, int>();
+
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                if (indexDictionary.TryGetValue(numbers[i], out int previousIndex))
+                {
+                    firstDuplicate = previousIndex;
+                    secondDuplicate = i;
+                    break;
+                }
+                else
+                {
+                    indexDictionary[numbers[i]] = i;
+                }
+            }
+
+            if (firstDuplicate == -1 || secondDuplicate == -1)
+            {
+                throw new ArgumentException("No same elements found");
+            }
+
+            return (firstDuplicate, secondDuplicate);
+        }
+        public int Array48(int[] numbers)
+        {
+            var elementCount = new Dictionary<int, int>();
+
+            foreach (var element in numbers)
+            {
+                if (elementCount.ContainsKey(element))
+                {
+                    elementCount[element]++;
+                }
+                else
+                {
+                    elementCount[element] = 1;
+                }
+            }
+
+            int maxCount = 0;
+            foreach (var count in elementCount.Values)
+            {
+                if (count > maxCount)
+                {
+                    maxCount = count;
+                }
+            }
+
+            return maxCount;
+        }
         public int Array50(int[] numbers)
         {
             int inversionCount = 0;
@@ -1273,7 +1524,170 @@ namespace RehabFromHolidays
 
             return inversionCount;
         }
+        public void Array52(int[] numbersA)
+        {
+            int[] numbersB = new int[numbersA.Length];
+
+            for (int i = 0; i < numbersA.Length; i++)
+            {
+                if (numbersA[i] < 5)
+                {
+                    numbersB[i] = 2 * numbersA[i];
+                }
+                else
+                {
+                    numbersB[i] = numbersA[i] / 2;
+                }
+            }
+            WriteLineArray(numbersB);
+        }
+        public void Array54(int[] numbersA)
+        {
+            int countEvenNumbers = 0;
+            foreach (var element in numbersA)
+            {
+                if (element % 2 == 0)
+                {
+                    countEvenNumbers++;
+                }
+            }
+
+            int[] numbersB = new int[countEvenNumbers];
+            int indexB = 0;
+
+            foreach (var element in numbersA)
+            {
+                if (element % 2 == 0)
+                {
+                    numbersB[indexB] = element;
+                    indexB++;
+                }
+            }
+
+            WriteLineArray(numbersB);
+        }
+        public void Array58(int[] numbersA)
+        {
+            int[] numbersB = new int[numbersA.Length];
+
+            int sum = 0;
+
+            for (int i = 0; i < numbersA.Length; i++)
+            {
+                sum += numbersA[i];
+
+                numbersB[i] = sum;
+            }
+
+            WriteLineArray(numbersB);
+        }
+        public void Array62(int[] numbersA)
+        {
+            int[] positiveNumbers = new int[numbersA.Length];
+            int[] negativeNumbers = new int[numbersA.Length];
+
+            int positiveCount = 0;
+            int negativeCount = 0;
+
+            foreach (var element in numbersA)
+            {
+                if (element > 0)
+                {
+                    positiveNumbers[positiveCount] = element;
+                    positiveCount++;
+                }
+                else if (element < 0)
+                {
+                    negativeNumbers[negativeCount] = element;
+                    negativeCount++;
+                }
+            }
+
+            int[] numbersB = new int[positiveCount];
+            Array.Copy(positiveNumbers, numbersB, positiveCount);
+
+            WriteLineArray(numbersB);
+
+            int[] numbersС = new int[negativeCount];
+            Array.Copy(negativeNumbers, numbersС, negativeCount);
+
+            WriteLineArray(numbersС);
+        }
+        public void Array70(int[] numbers)
+        {
+            int middle = numbers.Length / 2;
+
+            for (int i = 0; i < middle; i++)
+            {
+                int temp = numbers[i];
+                numbers[i] = numbers[i + middle];
+                numbers[i + middle] = temp;
+            }
+
+            WriteLineArray(numbers);
+        } 
+        public void Array74(int[] numbers)
+        {
+            int minIndex = 0;
+            int maxIndex = 0;
+
+            for (int i = 1; i < numbers.Length; i++)
+            {
+                if (numbers[i] < numbers[minIndex])
+                {
+                    minIndex = i;
+                }
+                else if (numbers[i] > numbers[maxIndex])
+                {
+                    maxIndex = i;
+                }
+            }
+
+            int startIndex = Math.Min(minIndex, maxIndex) + 1;
+            int endIndex = Math.Max(minIndex, maxIndex);
+
+            for (int i = startIndex; i < endIndex; i++)
+            {
+                numbers[i] = 0;
+            }
+            WriteLineArray(numbers);
+
+        } 
+        public void Array76(int[] numbers)
+        {
+            for (int i = 1; i < numbers.Length - 1; i++)
+            {
+                if (numbers[i] > numbers[i - 1] && numbers[i] > numbers[i + 1])
+                {
+                    numbers[i] = 0;
+                }
+            }
+            WriteLineArray(numbers);
+
+        }
+        public void Array80(int[] numbers)
+        {
+            int firstElement = numbers[0];
+
+            for (int i = 0; i < numbers.Length - 1; i++)
+            {
+                numbers[i] = numbers[i + 1];
+            }
+
+            numbers[numbers.Length - 1] = 0;
+
+            WriteLineArray(numbers);
+
+        }
         #endregion
+        private void WriteLineArray(int[] array)
+        {
+            Console.WriteLine();
+            foreach (var element in array)
+            {
+                Console.Write(element + " ");
+            }
+        }
 
         public void Series40(int K)
         {
