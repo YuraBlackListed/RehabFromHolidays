@@ -8,6 +8,29 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace RehabFromHolidays
 {
+    public class Point
+    {
+        public double X { get; set; }
+        public double Y { get; set; }
+
+        public Point(double x, double y)
+        {
+            X = x;
+            Y = y;
+        }
+
+        public override string ToString()
+        {
+            return $"({X}, {Y})";
+        }
+
+        public double DistanceTo(Point other)
+        {
+            return Math.Sqrt(Math.Pow(X - other.X, 2) + Math.Pow(Y - other.Y, 2));
+        }
+    }
+
+
     public class Solutions
     {
         private (int, int, int) CalculateDigits(int input)
@@ -17,1758 +40,189 @@ namespace RehabFromHolidays
             int hundreds = input / 100;
             return (units, dozens, hundreds);
         }
+        public void Begin40(int a1, int b1, int c1, int a2, int b2, int c2)
+        {
+            int D = a1 * b2 - a2 * b1;
 
-        #region Integer
-        public int Integer1(int input)
-            => input / 100;
-        public int Integer2(int input)
-            => input / 1000;
-        public int Integer3(int input)
-            => input / 1024;
-        public int Integer4(int A, int B)
-            => A / B;
-        public int Integer5(int A, int B)
-            => A % B;
-        public (int, int) Integer6(int input)
-            => (input / 10, input % 10);
-        public (int, int) Integer7(int input)
-            => ((input / 10) + (input % 10), (input / 10) * (input % 10));
-        public int Integer8(int input)
-            => input / 10 + input % 10 * 10;
-        public int Integer9(int input)
-            => input / 100;
-        public (int, int) Integer10(int input)
-            => ((input % 10), (input % 100 / 10));
-        public (int, int) Integer11(int input)
-        {
-            (int units, int dozens, int hundreds) = CalculateDigits(input);
-            return (units + dozens + hundreds, units * dozens * hundreds);
-        }
-        public int Integer12(int input)
-        {
-            (int units, int dozens, int hundreds) = CalculateDigits(input);
-            return units * 100 + dozens * 10 + hundreds;
-        }
-        public int Integer13(int input)
-        {
-            (int units, int dozens, int hundreds) = CalculateDigits(input);
-            return dozens * 100 + hundreds * 10 + units;
-        }
-        public int Integer14(int input)
-        {
-            (int units, int dozens, int hundreds) = CalculateDigits(input);
-            return units * 100 + hundreds * 10 + dozens;
-        }
-        public int Integer15(int input)
-        {
-            (int units, int dozens, int hundreds) = CalculateDigits(input);
-            return dozens * 100 + hundreds * 10 + units;
-        }
-        public int Integer16(int input)
-            => (input % 1000) / 100;
-        public int Integer17(int input)
-            => input / 1000;
-        public int Integer18(int input)
-            => input / 1000;
-        public int Integer19(int input)
-            => input / 60;
-        public int Integer20(int input)
-            => input / 60 / 60;
-        public int Integer21(int input)
-            => input % 60;
-        public int Integer22(int input)
-            => input % 60 % 60;
-        public int Integer23(int input)
-            => input % 60 % 60 / 60;
-        public int Integer24(int input)
-            => input % 7;
-        public int Integer25(int input)
-            => (input + 3) % 7;
-        public int Integer26(int input)
-            => (input + 1) % 7;
-        public int Integer27(int input)
-            => (input + 5) % 7;
-        public int Integer28(int dayOfAYear, int weekNumberOfFirstDay)
-            => (weekNumberOfFirstDay + dayOfAYear) % 7;
-        public int Integer29(int a, int b, int c)
-            => (a * b) / (c * c);
-        public int Integer30(int input)
-            => (input / 100) + 1;
+            if (D != 0)
+            {
+                double x = (c1 * b2 - c2 * b1) / D;
+                double y = (a1 * c2 - a2 * c1) / D;
 
-        #endregion
-        #region Boolean 
+                Console.WriteLine($"Solution to the system: x = {x}, y = {y}");
+            }
+            else
+            {
+                Console.WriteLine("The system does not have a unique solution.");
+            }
+        }
 
-        public bool Boolean1(int input)
-            => input > 0;
-        public bool Boolean2(int input)
-            => input % 2 != 0;
-        public bool Boolean3(int input)
-            => input % 2 == 0;
-        public bool Boolean4(int a, int b)
-            => a > 2 && b <= 3;
-        public bool Boolean5(int a, int b)
-            => a >= 0 && b < -2;
-        public bool Boolean6(int a, int b, int c)
-            => a < b && b < c;
-        public bool Boolean7(int a, int b, int c)
-            => (a < b && b < c) || (a > b && b > c);
-        public bool Boolean8(int a, int b)
-            => a % 2 != 0 && b % 2 != 0;
-        public bool Boolean9(int a, int b)
-            => a % 2 != 0 && b % 2 != 0;
-        public bool Boolean10(int a, int b)
-            => (a % 2 != 0 && b % 2 == 0) || (a % 2 == 0 && b % 2 != 0);
-        public bool Boolean11(int a, int b)
-            => (a % 2 == 0 && b % 2 == 0) || (a % 2 != 0 && b % 2 != 0);
-        public bool Boolean12(int a, int b, int c)
-            => a > 0 && b > 0 && c > 0;
-        public bool Boolean13(int a, int b, int c)
-            => a > 0 || b > 0 || c > 0;
-        public bool Boolean14(int a, int b, int c)
-            => (a > 0 && b <= 0 && c <= 0) || (a <= 0 && b > 0 && c <= 0) || (a <= 0 && b <= 0 && c > 0);
-        public bool Boolean15(int a, int b, int c)
-            => (a > 0 && b > 0 && c <= 0) || (a <= 0 && b > 0 && c > 0) || (a > 0 && b <= 0 && c > 0);
-        public bool Boolean16(int input)
-            => input % 2 == 0 && input > 9 && input < 100;
-        public bool Boolean17(int input)
-            => input % 2 != 0 && input > 99 && input < 1000;
-        public bool Boolean18(int a, int b, int c)
-            => a == b || b == c || a == c;
-        public bool Boolean19(int a, int b, int c)
-            => a == -b || b == -c || a == -c;
-        public bool Boolean20(int input)
+        public bool Bolean20(int number)
         {
-            (int units, int dozens, int hundreds) = CalculateDigits(input);
-            return units != dozens && units != hundreds && dozens != hundreds;
+            int digit1 = number % 10;
+            int digit2 = (number / 10) % 10;
+            int digit3 = number / 100;
+
+            return digit1 != digit2 && digit1 != digit3 && digit2 != digit3;
         }
-        public bool Boolean21(int input)
-        {
-            (int units, int dozens, int hundreds) = CalculateDigits(input);
-            return units < dozens && dozens < hundreds;
-        }
-        public bool Boolean22(int input)
-        {
-            (int units, int dozens, int hundreds) = CalculateDigits(input);
-            return (units < dozens && dozens < hundreds) || (units > dozens && dozens > hundreds);
-        }
-        public bool Boolean23(int input)
-            => input == Integer12(input);
-        public bool Boolean24(int a, int b, int c)
-            => a * b - 4 * a * c >= 0;
-        public bool Boolean25(int x, int y)
-            => x < 0 && y > 0;
-        public bool Boolean26(int x, int y)
-            => x > 0 && y < 0;
-        public bool Boolean27(int x, int y)
-            => (x < 0 && y > 0) || (x < 0 && y < 0);
-        public bool Boolean28(int x, int y)
-            => (x < 0 && y > 0) || (x < 0 && y < 0);
-        public bool Boolean29(int x, int y)
-            => (x > 0 && y > 0) || (x < 0 && y < 0);
-        public bool Boolean30(int a, int b, int c)
-            => a == b && c == b && c == a;
-        public bool Boolean31(int a, int b, int c)
-            => a == b || c == b || c == a;
-        public bool Boolean32(int a, int b, int c)
-            => (a == b + c) || (c == b + a) || (b == c + a);
-        public bool Boolean33(int a, int b, int c)
-            => (a + b) > c && (a + c) > b && (b + c) > a;
-        public bool Boolean34(int a, int b, int c)
-            => (a + b) > c && (a + c) > b && (b + c) > a;
-        public bool Boolean35(int x, int y)
-            => (x + y) % 2 != 0;
-        public bool Boolean36(int x1, int y1, int x2, int y2)
-            => (x1 + y1) % 2 != 0 && (x2 + y2) % 2 == 0 && (x2 + y2) % 2 != 0 && (x1 + y1) % 2 == 0;
-        public bool Boolean37(int x1, int y1, int x2, int y2)
-            => x2 - x1 <= 1 && y2 - y1 <= 1;
-        public bool Boolean38(int x1, int y1, int x2, int y2)
-            => Math.Abs(x2 - x1) == Math.Abs(y2 - y1);
-        public bool Boolean39(int x1, int y1, int x2, int y2)
-            => (x1 == x2) || (y1 == y2) || (Math.Abs(x2 - x1) == Math.Abs(y2 - y1));
-        public bool Boolean40(int x1, int y1, int x2, int y2)
-        {
-            int deltaX = Math.Abs(x2 - x1);
-            int deltaY = Math.Abs(y2 - y1);
-            return (deltaX == 2 && deltaY == 1) || (deltaX == 1 && deltaY == 2);
-        }
-        #endregion
-        #region If
-        public int If1(int input)
-        {
-            if (input > 0)
-            {
-                input++;
-            }
-            return input;
-        }
-        public int If2(int input)
-        {
-            if (input > 0)
-            {
-                input++;
-            }
-            else
-            {
-                input -= 2;
-            }
-            return input;
-        }
-        public int If3(int input)
-        {
-            if (input > 0)
-            {
-                input++;
-            }
-            else if (input < 0)
-            {
-                input -= 2;
-            }
-            else
-            {
-                input = 10;
-            }
-            return input;
-        }
-        public int If4(int a, int b, int c)
-        {
-            int n = 0;
-            if (a > 0)
-            {
-                n++;
-            }
-            if (b > 0)
-            {
-                n++;
-            }
-            if (c > 0)
-            {
-                n++;
-            }
-            return n;
-        }
-        public (int, int) If5(int a, int b, int c)
-        {
-            int npos = 0;
-            int nnegative = 0;
-            if (a > 0)
-            {
-                npos++;
-            }
-            else
-            {
-                nnegative++;
-            }
-            if (b > 0)
-            {
-                npos++;
-            }
-            else
-            {
-                nnegative++;
-            }
-            if (c > 0)
-            {
-                npos++;
-            }
-            else
-            {
-                nnegative++;
-            }
-            return (npos, nnegative);
-        }
-        //Ahh, fagg it, gon do tougher stuff 
+
+        public bool Bolean33(int a, int b, int c)
+            => a + b > c && a + c > b && b + c > a;
+
         public int If19(int a, int b, int c, int d)
         {
-            if (a == b && b == c)
-            {
-                return 1;
-            }
-            else if (a == b && a == d)
-            {
-                return 2;
-            }
-            else if (a == c && a == d)
-            {
-                return 3;
-            }
-            else if (b == d && b == d)
-            {
+            if (a == b && a == c && a != d)
                 return 4;
-            }
-            else
-            {
-                return 5;
-            }
-        }
-        public (int, int) If20(int a, int b, int c)
-        {
-            if (a - b < a - c)
-            {
-                return (b, a - b);
-            }
-            return (c, a - c);
-        }
-        public int If21(int x, int y)
-        {
-            if ((x == 0) && (y == 0))
-            {
-                return 0;
-            }
-            else if (x == 0)
-            {
-                return 1;
-            }
-            else if (y == 0)
-            {
-                return 2;
-            }
-            else
-            {
+            else if (a == b && a == d && a != c)
                 return 3;
-            }
-        }
-        public int If22(int x, int y)
-        {
-            if (x > 0 && y > 0)
-            {
-                return 1;
-            }
-            else if (x < 0 && y > 0)
-            {
+            else if (a == c && a == d && a != b)
                 return 2;
-            }
-            else if (x < 0 && y < 0)
-            {
-                return 3;
-            }
             else
-            {
-                return 4;
-            }
+                return 1;
         }
-        public (int, int) If23(int x1, int y1, int x2, int y2, int x3, int y3)
-        {
-            int x4 = 0;
-            int y4 = 0;
-            if (x1 != x2 && y1 != y2)
-            {
-                x4 = x3;
-                y4 = y1;
-            }
-            else if (x1 != x3 && y1 != y3)
-            {
-                x4 = x2;
-                y4 = y1;
-            }
-            else
-            {
-                x4 = x1;
-                y4 = y2;
-            }
-            return (x4, y4);
-        }
-        public double If24(int input)
-        {
-            if (input > 0)
-            {
-                return 2 * Math.Sin(input);
-            }
-            else
-            {
-                return 6 - input;
-            }
-        }
-        public int If25(int input)
-        {
-            if (input < -2 || input > 2)
-            {
-                return 2 * input;
-            }
-            else
-            {
-                return -3 * input;
-            }
-
-        }
-        public int If26(int input)
-        {
-            if (input <= 0)
-            {
-                return -input;
-            }
-            else if (input > 0 && input < 2)
-            {
-                return input * input;
-            }
-            else
-            {
-                return 4;
-            }
-
-        }
-        public int If27(int input)
-        {
-            if (input < 0)
-            {
-                return 0;
-            }
-            else
-            {
-                int integerPart = (int)input;
-                if (integerPart % 2 == 0)
-                {
-                    return 1;
-                }
-                else
-                {
-                    return -1;
-                }
-            }
-
-        }
-        public int If28(int input)
-        {
-            if ((input % 4 == 0 && input % 100 != 0) || (input % 400 == 0))
-            {
-                return 366;
-            }
-            else
-            {
-                return 365;
-            }
-        }
-        public string If29(int input)
-        {
-            string description;
-            if (input < 0)
-            {
-                if (input % 2 == 0)
-                {
-                    description = "negative even number";
-                }
-                else
-                {
-                    description = "negative odd number";
-                }
-            }
-            else if (input == 0)
-            {
-                description = "zero number";
-            }
-            else
-            {
-                if (input % 2 == 0)
-                {
-                    description = "positive even number";
-                }
-                else
-                {
-                    description = "positive odd number";
-                }
-            }
-            return description;
-        }
-        public string If30(int input)
-        {
-            string description;
-            if (input >= 1 && input <= 9)
-            {
-                description = "single digit number";
-            }
-            else if (input >= 10 && input <= 99)
-            {
-                if (input % 2 == 0)
-                {
-                    description = "even two-digit number";
-                }
-                else
-                {
-                    description = "odd two-digit number";
-                }
-            }
-            else if (input >= 100 && input <= 999)
-            {
-                if (input % 2 == 0)
-                {
-                    description = "even three-digit number";
-                }
-                else
-                {
-                    description = "odd three-digit number";
-                }
-            }
-            else
-            {
-                description = "The number is not in the range 1 to 999.";
-            }
-            return description;
-        }
-        #endregion
-        #region Case
-        public void Case12(int input)
-        {
-            double radius;
-            double diameter;
-            double length;
-            double area;
-
-            switch (input)
-            {
-                case 1:
-                    radius = input;
-                    diameter = 2 * radius;
-                    length = 2 * 3.14 * radius;
-                    area = 3.14 * radius * radius;
-                    break;
-                case 2:
-                    diameter = input;
-                    radius = diameter / 2;
-                    length = 2 * 3.14 * radius;
-                    area = 3.14 * radius * radius;
-                    break;
-                case 3:
-                    length = input;
-                    radius = length / (2 * 3.14);
-                    diameter = 2 * radius;
-                    area = 3.14 * radius * radius;
-                    break;
-                case 4:
-                    area = input;
-                    radius = Math.Sqrt(area / 3.14);
-                    diameter = 2 * radius;
-                    length = 2 * 3.14 * radius;
-                    break;
-                default:
-                    Console.WriteLine("Wrong element number");
-                    return;
-            }
-
-            Console.WriteLine(radius);
-            Console.WriteLine(diameter);
-            Console.WriteLine(length);
-            Console.WriteLine(area);
-        }
-        public void Case13(int input)
-        {
-            double a;
-            double c;
-            double h;
-            double s;
-
-            switch (input)
-            {
-                case 1:
-                    a = input;
-                    c = a * Math.Sqrt(2);
-                    h = c / 2;
-                    s = (c * h) / 2;
-                    break;
-                case 2:
-                    c = input;
-                    a = c / Math.Sqrt(2);
-                    h = c / 2;
-                    s = (c * h) / 2;
-                    break;
-                case 3:
-                    h = input;
-                    c = 2 * h;
-                    a = c / Math.Sqrt(2);
-                    s = (c * h) / 2;
-                    break;
-                case 4:
-                    s = input;
-                    h = Math.Sqrt((2 * s) / 2);
-                    c = 2 * h;
-                    a = c / Math.Sqrt(2);
-                    break;
-                default:
-                    Console.WriteLine("Wrong element number");
-                    return;
-            }
-
-            Console.WriteLine($"Leg (a): {a}");
-            Console.WriteLine($"Hypotenuse (c): {c}");
-            Console.WriteLine($"Height (h): {h}");
-            Console.WriteLine($"Square (S): {s}");
-        }
-        public void Case14(int input)
-        {
-            double a;
-            double r1;
-            double r2;
-            double s;
-
-            switch (input)
-            {
-                case 1:
-                    a = input;
-                    r1 = (a * Math.Sqrt(3)) / 6;
-                    r2 = 2 * r1;
-                    s = (a * a * Math.Sqrt(3)) / 4;
-                    break;
-                case 2:
-                    r1 = input;
-                    a = (r1 * 6) / Math.Sqrt(3);
-                    r2 = 2 * r1;
-                    s = (a * a * Math.Sqrt(3)) / 4;
-                    break;
-                case 3:
-                    r2 = input;
-                    r1 = r2 / 2;
-                    a = (r1 * 6) / Math.Sqrt(3);
-                    s = (a * a * Math.Sqrt(3)) / 4;
-                    break;
-                case 4:
-                    s = input;
-                    a = Math.Sqrt((4 * s) / Math.Sqrt(3));
-                    r1 = (a * Math.Sqrt(3)) / 6;
-                    r2 = 2 * r1;
-                    break;
-                default:
-                    Console.WriteLine("Wrong element number");
-                    return;
-            }
-
-            Console.WriteLine(a);
-            Console.WriteLine(r1);
-            Console.WriteLine(r2);
-            Console.WriteLine(s);
-        }
-        public void Case18(int input)
-        {
-            if (input >= 100 && input <= 999)
-            {
-                string[] hundreds = { "", "hundred", "two hundred", "three hundred", "four hundred", "five hundred", "six hundred", "seven hundred", "eight hundred", "nine hundred" };
-                string[] tens = { "", "", "twenty", "thirty", "fourty", "fifty", "sixty", "sevety", "eighty", "ninety" };
-                string[] ones = { "", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
-
-                int hundredsDigit = input / 100;
-                int tensDigit = (input % 100) / 10;
-                int onesDigit = input % 10;
-
-                string description = $"{hundreds[hundredsDigit]}";
-
-                if (tensDigit == 1)
-                {
-                    description += $" {ones[tensDigit * 10 + onesDigit]}";
-                }
-                else
-                {
-                    description += $" {tens[tensDigit]} {ones[onesDigit]}";
-                }
-
-                Console.WriteLine($"{input} — {description}");
-            }
-            else
-            {
-                Console.WriteLine("Number must be between 100 and 999");
-            }
-        }
-        public void Case19(int input)
-        {
-            string[] colors = { "green", "red", "yellow", "white", "black" };
-            string[] animals = { "rat", "cow", "tiger", "rabbit", "dragon", "snake", "horse", "sheep", "monke", "chicken", "dog", "pig" };
-
-            int startYear = 1984;
-            int cycleYears = 60;
-
-            int yearInCycle = (input - startYear) % cycleYears;
-            int colorIndex = yearInCycle / 12;
-            int animalIndex = yearInCycle % 12;
-
-            string color = colors[colorIndex];
-            string animal = animals[animalIndex];
-
-            Console.WriteLine($"{input} year — year {color} {animal}");
-        }
-
-        //Case 20: same shit, I'm too lazy to do this
-        #endregion
-        #region For
-        public double For20(int input)
+        public double For23(int x, int n)
         {
             double sum = 0;
-            double factorial = 1;
 
-            for (int i = 1; i <= input; i++)
+            for (int i = 0; i <= n; i++)
             {
-                factorial *= i;
-                sum += factorial;
-            }
-
-            return sum;
-        }
-        public double For21(int input)
-        {
-            double sum = 1.0;
-            double factorial = 1.0;
-
-            for (int i = 1; i <= input; i++)
-            {
-                factorial *= i;
-                sum += 1.0 / factorial;
-            }
-
-            return sum;
-        }
-        public double For22(int n, int x)
-        {
-            double sum = 1.0;
-            double term = 1.0;
-            double factorial = 1.0;
-
-            for (int i = 1; i <= n; i++)
-            {
-                factorial *= i;
-                term *= x;
-                term /= factorial;
+                double term = Math.Pow(-1, i) * Math.Pow(x, 2 * i + 1) / Factorial(2 * i + 1);
                 sum += term;
             }
 
             return sum;
         }
-        //same stuff till For29
-        public double For27(double X, int N)
+        private double Factorial (int n)
         {
-            double sum = 0;
-            double powerX = X;
-            double factorial = 1;
+            if (n == 0 || n == 1)
+                return 1;
 
-            for (int i = 1; i <= N; i++)
+            double result = 1;
+            for (int i = 2; i <= n; i++)
             {
-                factorial *= 2 * i * (2 * i - 1);
-                sum += (powerX * factorial) / ((2 * i) * (2 * i + 1));
-                powerX *= X * X;
+                result *= i;
             }
 
-            return sum;
+            return result;
         }
-        public double For28(double X, int N)
+        public (int, int, int) Proc14(int a, int b, int c)
+            => (c, a, b); // or
+        public void Proc14Again(ref int a, ref int b, ref int c)
         {
-            double sum = 1;
-            double powerX = X;
-            double denominator = 2;
-
-            for (int i = 1; i <= N; i++)
-            {
-                double term = (i % 2 == 0) ? -1 : 1;
-                term *= powerX / denominator;
-                sum += term;
-                powerX *= X;
-                denominator *= 2 * (i + 1);
-            }
-
-            return sum;
+            int temp = a;
+            a = c;
+            c = b;
+            b = temp;
         }
-        public void For29(int a, int b, int n)
+
+        public int MinMax17(int[] array)
         {
-            double H = (b - a) / n;
-
-            Console.WriteLine($"Length of every line segment: {H}");
-
-            for (int i = 0; i <= n; i++)
-            {
-                double point = a + i * H;
-                Console.WriteLine(point);
-            }
-        }
-        public void For30(int a, int n, int h)
-        {
-            Console.WriteLine($"Length of every line segment: {h}");
-
-            for (int i = 0; i <= n; i++)
-            {
-                double X = a + i * h;
-                double result = 1 - Math.Sin(X);
-                Console.WriteLine($"F({X}) = {result}");
-            }
-        }
-        public void For31(int n)
-        {
-            double[] sequence = new double[n + 1];
-            sequence[0] = 2;
-
-            for (int K = 1; K <= n; K++)
-            {
-                sequence[K] = 2 + 1 / sequence[K - 1];
-            }
-
-            Console.WriteLine("Sequence elements:");
-
-            for (int K = 1; K <= n; K++)
-            {
-                Console.WriteLine($"A{K} = {sequence[K]}");
-            }
-
-        }
-        public void For35(int n)
-        {
-            int[] sequence = new int[n];
-            sequence[0] = 1;
-            sequence[1] = 2;
-            sequence[2] = 3;
-
-            for (int K = 3; K < n; K++)
-            {
-                sequence[K] = sequence[K - 1] + sequence[K - 2] - 2 * sequence[K - 3];
-            }
-
-            Console.WriteLine("Sequence elements:");
-
-            for (int K = 0; K < n; K++)
-            {
-                Console.WriteLine($"A{K + 1} = {sequence[K]}");
-            }
-        }
-        #endregion
-        #region While
-        public void While11(int N)
-        {
-            int k = 1;
-            int sum = 1;
-
-            while (sum < N)
-            {
-                k++;
-                sum += k;
-            }
-            Console.WriteLine(k);
-            Console.WriteLine(sum);
-        }
-        public void While13(double A)
-        {
-            double sum = 0;
-            int k = 1;
-
-            while (sum <= A)
-            {
-                k++;
-                sum += 1.0 / k;
-            }
-
-            Console.WriteLine(k);
-            Console.WriteLine(sum);
-        }
-        public void While14(double A)
-        {
-            double sum = 0;
-            int k = 1;
-
-            while (sum < A)
-            {
-                k++;
-                sum += 1.0 / k;
-            }
-
-            k--;
-
-            Console.WriteLine(k);
-            Console.WriteLine(sum);
-        }
-        public void While15(double P)
-        {
-            double initialDeposit = 1000.0;
-            double targetAmount = 1100.0;
-            int k = 0;
-
-            while (initialDeposit < targetAmount)
-            {
-                initialDeposit += initialDeposit * (P / 100.0);
-                k++;
-            }
-
-            Console.WriteLine(k);
-            Console.WriteLine(targetAmount);
-            Console.WriteLine(initialDeposit);
-        }
-        public void While17(int N)
-        {
-            Console.WriteLine("Digits of the number N, starting from the rightmost (ones place):");
-
-            while (N > 0)
-            {
-                int digit = N % 10;
-                Console.WriteLine(digit);
-                N /= 10;
-            }
-        }
-        public void While18(int N)
-        {
-            int sumOfDigits = 0;
-            int numberOfDigits = 0;
-            int digit = N % 10;
-
-            while (N > 0)
-            {
-                sumOfDigits += digit;
-                numberOfDigits++;
-                N /= 10;
-            }
-            Console.WriteLine(numberOfDigits);
-            Console.WriteLine(sumOfDigits);
-        }
-        public void While19(int N)
-        {
-            int reversedNumber = 0;
-            while (N > 0)
-            {
-                int digit = N % 10;
-                reversedNumber = reversedNumber * 10 + digit;
-                N /= 10;
-            }
-            Console.WriteLine(reversedNumber);
-        }
-        public void While20(int N)
-        {
-            int digit = N % 10;
-            while (N > 0)
-            {
-                if (digit == 2)
-                {
-                    Console.WriteLine(true);
-                    break;
-                }
-                N /= 10;
-            }
-            
-        }
-        public void While22(int N)
-        {
-            for (int i = 2; i <= Math.Sqrt(N); i++)
-            {
-                if (N % i == 0)
-                {
-                    Console.WriteLine(true);
-                    break;
-                }
-            }
-        }
-        public void While23(int A, int B)
-        {
-            while (B != 0)
-            {
-                int temp = B;
-                B = A % B;
-                A = temp;
-            }
-            Console.WriteLine(A);
-        }
-        public bool While24(int N)
-        {
-            if (N == 0 || N == 1)
-            {
-                return true;
-            }
-
-            int F1 = 0;
-            int F2 = 1;
-
-            while (F2 < N)
-            {
-                int temp = F1;
-                F1 = F2;
-                F2 = temp + F2;
-
-                if (F2 == N)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-        public int While25(int N)
-        {
-            int a = 1;
-            int b = 1;
-
-            while (true)
-            {
-                int temp = a;
-                a = b;
-                b = temp + b;
-
-                if (b > N)
-                {
-                    return b;
-                }
-            }
-        }
-        public void While28(int epsilon)
-        {
-            int k = 2;
-            double akMinus1 = 2;
-            double ak = akMinus1 + 1 / akMinus1;
-
-            while (Math.Abs(ak - akMinus1) >= epsilon)
-            {
-                akMinus1 = ak;
-                ak = akMinus1 + 1 / akMinus1;
-                k++;
-            }
-
-            Console.WriteLine(k);
-            Console.WriteLine(akMinus1);
-            Console.WriteLine(ak);
-        }
-        public int While30(int A, int B, int C)
-        {
-            int squaresInWidth = A / C;
-            int squaresInHeight = B / C;
-
-            return squaresInWidth * squaresInHeight;
-        }
-        #endregion
-        #region MinMax
-        public (int, int) MinMax8(int[] numbers)
-        {
-            int min = numbers[0];
-            int firstMinIndex = 0;
-            int lastMinIndex = 0;
-
-            for (int i = 1; i < numbers.Length; i++)
-            {
-                if (numbers[i] < min)
-                {
-                    min = numbers[i];
-                    firstMinIndex = i;
-                    lastMinIndex = i;
-                }
-                else if (numbers[i] == min)
-                {
-                    lastMinIndex = i;
-                }
-            }
-            return (firstMinIndex, lastMinIndex);
-        }
-        public int MinMax10(int[] numbers)
-        {
-            int min = numbers[0];
-            int max = numbers[0];
-            int minIndex = 0;
-            int maxIndex = 0;
-
-            for (int i = 1; i < numbers.Length; i++)
-            {
-                if (numbers[i] < min)
-                {
-                    min = numbers[i];
-                    minIndex = i;
-                }
-                else if (numbers[i] > max)
-                {
-                    max = numbers[i];
-                    maxIndex = i;
-                }
-            }
-            return (minIndex < maxIndex) ? minIndex : maxIndex;
-        } 
-        public int MinMax16(int[] numbers)
-        {
-            int min = numbers[0];
-            int minIndex = 0;
-
-            for (int i = 1; i < numbers.Length; i++)
-            {
-                if (numbers[i] < min)
-                {
-                    min = numbers[i];
-                    minIndex = i;
-                }
-            }
-            return minIndex;
-        }
-        public double MinMax21(int[] numbers)
-        {
-            double minValue = numbers.Min();
-            double maxValue = numbers.Max();
-
-            int[] filteredValues = numbers.Where(val => val != minValue && val != maxValue).ToArray();
-
-            double averageValue = filteredValues.Average();
-
-            return averageValue;
-        }
-        public int MinMax26(int[] numbers)
-        {
-            int maxConsecutiveEvenCount = 0;
-            int currentConsecutiveEvenCount = 0;
-
-            for (int i = 0; i < numbers.Length; i++)
-            {
-                if (numbers[i] % 2 == 0)
-                {
-                    currentConsecutiveEvenCount++;
-                }
-                else
-                {
-                    maxConsecutiveEvenCount = Math.Max(maxConsecutiveEvenCount, currentConsecutiveEvenCount);
-
-                    currentConsecutiveEvenCount = 0;
-                }
-            }
-
-            maxConsecutiveEvenCount = Math.Max(maxConsecutiveEvenCount, currentConsecutiveEvenCount);
-
-            if (maxConsecutiveEvenCount > 0)
-            {
-                return maxConsecutiveEvenCount;
-            }
-            return 0;
-        }
-        public (int, int) MinMax27(int[] numbers)
-        {
-            int longestSequenceStartIndex = 0;
-            int longestSequenceLength = 1;
-            int currentSequenceStartIndex = 0;
-            int currentSequenceLength = 1;
-
-            for (int i = 1; i < numbers.Length; i++)
-            {
-                if (numbers[i] == numbers[i - 1])
-                {
-                    currentSequenceLength++;
-                }
-                else
-                {
-                    if (currentSequenceLength > longestSequenceLength)
-                    {
-                        longestSequenceStartIndex = currentSequenceStartIndex;
-                        longestSequenceLength = currentSequenceLength;
-                    }
-
-                    currentSequenceStartIndex = i;
-                    currentSequenceLength = 1;
-                }
-            }
-
-            if (currentSequenceLength > longestSequenceLength)
-            {
-                longestSequenceStartIndex = currentSequenceStartIndex;
-                longestSequenceLength = currentSequenceLength;
-            }
-            return (longestSequenceStartIndex, longestSequenceLength);
-        }
-        #endregion
-        #region Array
-        public void Array10(int[] numbers)
-        {
-            Console.WriteLine("Even numbers in ascending index order:");
-            for (int i = 0; i < numbers.Length; i++)
-            {
-                if (numbers[i] % 2 == 0)
-                {
-                    Console.WriteLine($"Index {i}: {numbers[i]}");
-                }
-            }
-
-            Console.WriteLine("Odd numbers in descending order of indices:");
-            for (int i = numbers.Length - 1; i >= 0; i--)
-            {
-                if (numbers[i] % 2 != 0)
-                {
-                    Console.WriteLine($"Index {i}: {numbers[i]}");
-                }
-            }
-        }
-        public int Array18(int[] numbers)
-        {
-            for (int i = 0; i < numbers.Length - 1; i++)
-            {
-                if (numbers[i] < numbers[9])
-                {
-                    return numbers[i];
-                }
-            }
-            return 0;
-        }
-        public int Array19(int[] numbers)
-        {
-            for (int i = 0; i < numbers.Length - 1; i++)
-            {
-                if (numbers[0] < numbers[i] && numbers[i] < numbers[9])
-                {
-                    return i;
-                }
-            }
-            return 0;
-        }
-        public int Array20(int[] numbers, int K, int L)
-        {
-            int sum = 0;
-
-            for (int i = 0; i < numbers.Length; i++)
-            {
-                if (numbers[i] >= K && numbers[i] <= L)
-                {
-                    sum += numbers[i];
-                }
-            }
-            return sum;
-        }
-        public double Array21(int[] numbers, int K, int L)
-        {
-            int sum = 0;
-            int count = 0;
-
-            for (int i = 0; i < numbers.Length; i++)
-            {
-                if (numbers[i] >= K && numbers[i] <= L)
-                {
-                    sum += numbers[i];
-                    count++;
-                }
-            }
-
-            return (double)sum / count;
-        }
-        public int Array22(int[] numbers, int K, int L)
-        {
-            int sum = 0;
-
-            for (int i = 0; i < numbers.Length; i++)
-            {
-                if (i < K || i > L)
-                {
-                    sum += numbers[i];
-                }
-            }
-
-            return sum;
-        }
-        public double Array23(int[] numbers, int K, int L)
-        {
-            int sum = 0;
-            int count = 0;
-
-            for (int i = 0; i < numbers.Length; i++)
-            {
-                if (i < K || i > L)
-                {
-                    sum += numbers[i];
-                    count++;
-                }
-            }
-
-            return (double)sum / count;
-        }
-        public int Array24(int[] numbers)
-        {
-            bool isArithmeticProgression = true;
-            int commonRatio = numbers[1] - numbers[0];
-
-            for (int i = 1; i < numbers.Length; i++)
-            {
-                if (numbers[i] != numbers[i - 1] + commonRatio)
-                {
-                    isArithmeticProgression = false;
-                    break;
-                }
-            }
-
-            if (isArithmeticProgression)
-            {
-                return commonRatio;
-            }
-            return 0;
-        }
-        public int Array25(int[] numbers)
-        {
-            bool isGeometricProgression = true;
-            int commonRatio = numbers[1] / numbers[0];
-
-            for (int i = 2; i < numbers.Length; i++)
-            {
-                if (numbers[i] != numbers[i - 1] * commonRatio)
-                {
-                    isGeometricProgression = false;
-                    break;
-                }
-            }
-
-            if (isGeometricProgression)
-            {
-                return commonRatio;
-            }
-            return 0;
-        }
-        public int Array26(int[] numbers)
-        {
-            for (int i = 1; i < numbers.Length; i++)
-            {
-                if ((numbers[i - 1] % 2 == 0 && numbers[i] % 2 == 0) || (numbers[i - 1] % 2 != 0 && numbers[i] % 2 != 0))
-                {
-                    return i;
-                }
-            }
-
-            return 0;
-        }
-        public int Array28(int[] numbers)
-        {
-            int minEven = numbers[0];
-
-            for (int i = 2; i < numbers.Length; i += 2)
-            {
-                if (numbers[i] < minEven)
-                {
-                    minEven = numbers[i];
-                }
-            }
-
-            return minEven;
-        }
-        public void Array30(int[] numbers)
-        {
-            List<int> indexes = new List<int>();
-
-            for (int i = 0; i < numbers.Length - 1; i++)
-            {
-                if (numbers[i] > numbers[i + 1])
-                {
-                    indexes.Add(i);
-                }
-            }
-
-            foreach (int index in indexes)
-            {
-                Console.WriteLine($"Index {index}: {numbers[index]}");
-            }
-
-            Console.WriteLine($"Number of such elements: {indexes.Count}");
-        } 
-        public int Array32(int[] numbers)
-        {
-            for (int i = 1; i < numbers.Length - 1; i++)
-            {
-                if (numbers[i] < numbers[i - 1] && numbers[i] < numbers[i + 1])
-                {
-                    return i;
-                }
-            }
-
-            return -1;
-        }
-        public int Array34(int[] numbers)
-        {
-            int maxLocalMin = int.MinValue;
-
-            for (int i = 1; i < numbers.Length - 1; i++)
-            {
-                if (numbers[i] < numbers[i - 1] && numbers[i] < numbers[i + 1])
-                {
-                    if (numbers[i] > maxLocalMin)
-                    {
-                        maxLocalMin = numbers[i];
-                    }
-                }
-            }
-
-            if (maxLocalMin == int.MinValue)
-            {
-                return -1;
-            }
-
-            return maxLocalMin;
-        }
-        public int Array36(int[] numbers)
-        {
-            int maxNotLocalExtremum = int.MinValue;
-
-            for (int i = 1; i < numbers.Length - 1; i++)
-            {
-                if (!((numbers[i] < numbers[i - 1] && numbers[i] < numbers[i + 1]) || (numbers[i] > numbers[i - 1] && numbers[i] > numbers[i + 1])))
-                {
-                    if (numbers[i] > maxNotLocalExtremum)
-                    {
-                        maxNotLocalExtremum = numbers[i];
-                    }
-                }
-            }
-
-            if (maxNotLocalExtremum == int.MinValue)
-            {
+            if (array.Length == 0)
                 return 0;
-            }
 
-            return maxNotLocalExtremum;
-        }
-        public int Array38(int[] numbers)
-        {
-            int decreasingSegmentsCount = 0;
-            bool isInDecreasingSegment = false;
-
-            for (int i = 1; i < numbers.Length; i++)
-            {
-                if (numbers[i] < numbers[i - 1])
-                {
-                    if (!isInDecreasingSegment)
-                    {
-                        isInDecreasingSegment = true;
-                        decreasingSegmentsCount++;
-                    }
-                }
-                else
-                {
-                    isInDecreasingSegment = false;
-                }
-            }
-            return decreasingSegmentsCount;
-        }
-        public int Array40(int[] numbers, int R)
-        {
-            int closestElement = numbers[0];
-            int minDifference = Math.Abs(numbers[0] - R);
-
-            for (int i = 1; i < numbers.Length; i++)
-            {
-                int currentDifference = Math.Abs(numbers[i] - R);
-
-                if (currentDifference < minDifference)
-                {
-                    minDifference = currentDifference;
-                    closestElement = numbers[i];
-                }
-            }
-
-            return closestElement;
-        }
-        public (int, int) Array42(int[] numbers, int R)
-        {
-            int closestSum = numbers[0] + numbers[1];
-            (int, int) closestElements = (numbers[0], numbers[1]);
-
-            for (int i = 1; i < numbers.Length - 1; i++)
-            {
-                int currentSum = numbers[i] + numbers[i + 1];
-                int currentDifference = Math.Abs(currentSum - R);
-
-                if (currentDifference < Math.Abs(closestSum - R))
-                {
-                    closestSum = currentSum;
-                    closestElements = (numbers[i], numbers[i + 1]);
-                }
-            }
-
-            return closestElements;
-        }
-        public (int, int) Array44(int[] numbers)
-        {
-            int firstDuplicate = -1;
-            int secondDuplicate = -1;
-
-            var indexDictionary = new System.Collections.Generic.Dictionary<int, int>();
-
-            for (int i = 0; i < numbers.Length; i++)
-            {
-                if (indexDictionary.TryGetValue(numbers[i], out int previousIndex))
-                {
-                    firstDuplicate = previousIndex;
-                    secondDuplicate = i;
-                    break;
-                }
-                else
-                {
-                    indexDictionary[numbers[i]] = i;
-                }
-            }
-
-            if (firstDuplicate == -1 || secondDuplicate == -1)
-            {
-                throw new ArgumentException("No same elements found");
-            }
-
-            return (firstDuplicate, secondDuplicate);
-        }
-        public int Array48(int[] numbers)
-        {
-            var elementCount = new Dictionary<int, int>();
-
-            foreach (var element in numbers)
-            {
-                if (elementCount.ContainsKey(element))
-                {
-                    elementCount[element]++;
-                }
-                else
-                {
-                    elementCount[element] = 1;
-                }
-            }
-
-            int maxCount = 0;
-            foreach (var count in elementCount.Values)
-            {
-                if (count > maxCount)
-                {
-                    maxCount = count;
-                }
-            }
-
-            return maxCount;
-        }
-        public int Array50(int[] numbers)
-        {
-            int inversionCount = 0;
-
-            for (int i = 0; i < numbers.Length - 1; i++)
-            {
-                for (int j = i + 1; j < numbers.Length; j++)
-                {
-                    if (numbers[i] > numbers[j])
-                    {
-                        inversionCount++;
-                    }
-                }
-            }
-
-            return inversionCount;
-        }
-        public void Array52(int[] numbersA)
-        {
-            int[] numbersB = new int[numbersA.Length];
-
-            for (int i = 0; i < numbersA.Length; i++)
-            {
-                if (numbersA[i] < 5)
-                {
-                    numbersB[i] = 2 * numbersA[i];
-                }
-                else
-                {
-                    numbersB[i] = numbersA[i] / 2;
-                }
-            }
-            WriteLineArray(numbersB);
-        }
-        public void Array54(int[] numbersA)
-        {
-            int countEvenNumbers = 0;
-            foreach (var element in numbersA)
-            {
-                if (element % 2 == 0)
-                {
-                    countEvenNumbers++;
-                }
-            }
-
-            int[] numbersB = new int[countEvenNumbers];
-            int indexB = 0;
-
-            foreach (var element in numbersA)
-            {
-                if (element % 2 == 0)
-                {
-                    numbersB[indexB] = element;
-                    indexB++;
-                }
-            }
-
-            WriteLineArray(numbersB);
-        }
-        public void Array58(int[] numbersA)
-        {
-            int[] numbersB = new int[numbersA.Length];
-
-            int sum = 0;
-
-            for (int i = 0; i < numbersA.Length; i++)
-            {
-                sum += numbersA[i];
-
-                numbersB[i] = sum;
-            }
-
-            WriteLineArray(numbersB);
-        }
-        public void Array62(int[] numbersA)
-        {
-            int[] positiveNumbers = new int[numbersA.Length];
-            int[] negativeNumbers = new int[numbersA.Length];
-
-            int positiveCount = 0;
-            int negativeCount = 0;
-
-            foreach (var element in numbersA)
-            {
-                if (element > 0)
-                {
-                    positiveNumbers[positiveCount] = element;
-                    positiveCount++;
-                }
-                else if (element < 0)
-                {
-                    negativeNumbers[negativeCount] = element;
-                    negativeCount++;
-                }
-            }
-
-            int[] numbersB = new int[positiveCount];
-            Array.Copy(positiveNumbers, numbersB, positiveCount);
-
-            WriteLineArray(numbersB);
-
-            int[] numbersС = new int[negativeCount];
-            Array.Copy(negativeNumbers, numbersС, negativeCount);
-
-            WriteLineArray(numbersС);
-        }
-        public void Array70(int[] numbers)
-        {
-            int middle = numbers.Length / 2;
-
-            for (int i = 0; i < middle; i++)
-            {
-                int temp = numbers[i];
-                numbers[i] = numbers[i + middle];
-                numbers[i + middle] = temp;
-            }
-
-            WriteLineArray(numbers);
-        } 
-        public void Array74(int[] numbers)
-        {
-            int minIndex = 0;
             int maxIndex = 0;
 
-            for (int i = 1; i < numbers.Length; i++)
+            for (int i = 1; i < array.Length; i++)
             {
-                if (numbers[i] < numbers[minIndex])
-                {
-                    minIndex = i;
-                }
-                else if (numbers[i] > numbers[maxIndex])
-                {
+                if (array[i] >= array[maxIndex])
                     maxIndex = i;
-                }
             }
 
-            int startIndex = Math.Min(minIndex, maxIndex) + 1;
-            int endIndex = Math.Max(minIndex, maxIndex);
+            return array.Length - 1 - maxIndex;
+        }
 
-            for (int i = startIndex; i < endIndex; i++)
-            {
-                numbers[i] = 0;
-            }
-            WriteLineArray(numbers);
-
-        } 
-        public void Array76(int[] numbers)
+        public (double, Point, Point) Array135(Point[] setA, Point[] setB)
         {
-            for (int i = 1; i < numbers.Length - 1; i++)
+            double minDistance = double.MaxValue;
+
+            foreach (var point1 in setA)
             {
-                if (numbers[i] > numbers[i - 1] && numbers[i] > numbers[i + 1])
+                foreach (var point2 in setB)
                 {
-                    numbers[i] = 0;
+                    double distance = point1.DistanceTo(point2);
+
+                    if (distance < minDistance)
+                    {
+                        minDistance = distance;
+                        return (distance, point1, point2);
+                    }
                 }
             }
-            WriteLineArray(numbers);
-
-        }
-        public void Array80(int[] numbers)
-        {
-            int firstElement = numbers[0];
-
-            for (int i = 0; i < numbers.Length - 1; i++)
-            {
-                numbers[i] = numbers[i + 1];
-            }
-
-            numbers[numbers.Length - 1] = 0;
-
-            WriteLineArray(numbers);
-
-        }
-        #endregion
-        private void WriteLineArray(int[] array)
-        {
-            Console.WriteLine();
-            foreach (var element in array)
-            {
-                Console.Write(element + " ");
-            }
+            return (0, null, null);
         }
 
-        public void Series40(int K)
+
+        public void Matrix51(int[,] matrix)
         {
-            List<int[]> sets = new List<int[]>();
+            int minRowIndex = 0, maxRowIndex = 0;
+            int minValue = matrix[0, 0], maxValue = matrix[0, 0];
 
-            for (int i = 0; i < K; i++)
+            for (int i = 0; i < matrix.GetLength(0); i++)
             {
-                int[] set = ReadSet();
-                sets.Add(set);
-            }
-
-            for (int i = 0; i < K; i++)
-            {
-                if (IsSawtooth(sets[i]))
+                for (int j = 0; j < matrix.GetLength(1); j++)
                 {
-                    Console.WriteLine(sets[i].Length);
-                }
-                else
-                {
-                    int firstNonSawtooth = FindFirstNonSawtooth(sets[i]);
-                    Console.WriteLine(firstNonSawtooth);
+                    if (matrix[i, j] < minValue)
+                    {
+                        minValue = matrix[i, j];
+                        minRowIndex = i;
+                    }
+
+                    if (matrix[i, j] > maxValue)
+                    {
+                        maxValue = matrix[i, j];
+                        maxRowIndex = i;
+                    }
                 }
             }
+
+            for (int j = 0; j < matrix.GetLength(1); j++)
+            {
+                int temp = matrix[minRowIndex, j];
+                matrix[minRowIndex, j] = matrix[maxRowIndex, j];
+                matrix[maxRowIndex, j] = temp;
+            }
         }
-        static int[] ReadSet()
+
+        public void PrintMatrix(int[,] matrix)
         {
-            List<int> set = new List<int>();
-            int num;
-            while ((num = int.Parse(Console.ReadLine())) != 0)
+            for (int i = 0; i < matrix.GetLength(0); i++)
             {
-                set.Add(num);
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    Console.Write(matrix[i, j] + " ");
+                }
+                Console.WriteLine();
             }
-            return set.ToArray();
         }
 
-        static bool IsSawtooth(int[] set)
+
+        public void PrintUppercaseLetters(int N)
         {
-            if (set.Length < 3)
+            char startLetter = 'A';
+
+            for (int i = 0; i < N; i++)
             {
-                return false;
+                char currentLetter = (char)(startLetter + i);
+                Console.WriteLine(currentLetter + " ");
             }
-
-            bool increasing = set[0] < set[1];
-
-            for (int i = 1; i < set.Length - 1; i++)
-            {
-                if ((increasing && set[i] >= set[i + 1]) || (!increasing && set[i] <= set[i + 1]))
-                {
-                    return false;
-                }
-                increasing = !increasing;
-            }
-
-            return true;
         }
-
-        static int FindFirstNonSawtooth(int[] set)
+        public List<Point> Task12(List<Point> points, Point center, double distance)
         {
-            for (int i = 0; i < set.Length; i++)
+            List<Point> result = new List<Point>();
+
+            foreach (var point in points)
             {
-                if (i % 2 == 0 && set[i] % 2 != 0)
+                double distanceToCenter = point.DistanceTo(center);
+
+                if (distanceToCenter < distance)
                 {
-                    return set[i];
-                }
-                else if (i % 2 != 0 && set[i] % 2 == 0)
-                {
-                    return set[i];
+                    result.Add(point);
                 }
             }
-            return -1;
+
+            return result;
         }
-    }
+    }   
+    
 
 }
-
-/*Integer 8, 27
-Boolean 39
-If 18, 27
-For 10, 25
-While 10
-Series 23
-Proc 28, 29
-Minmax 23, 28
-Array 28, 47, 74*/

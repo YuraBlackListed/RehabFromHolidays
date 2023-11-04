@@ -2,161 +2,50 @@
 
 Solutions solutions = new Solutions();
 
-/*Console.WriteLine(solutions.Integer1(120));
-Console.WriteLine(solutions.Integer2(3300));
-Console.WriteLine(solutions.Integer3(1025));
-Console.WriteLine(solutions.Integer4(12, 4));
-Console.WriteLine(solutions.Integer5(10, 4));
-Console.WriteLine(solutions.Integer6(12));
-Console.WriteLine(solutions.Integer7(12));
-Console.WriteLine(solutions.Integer8(12));
-Console.WriteLine(solutions.Integer9(333));
-Console.WriteLine(solutions.Integer10(345));
-Console.WriteLine(solutions.Integer11(234));
-Console.WriteLine(solutions.Integer12(234));
-Console.WriteLine(solutions.Integer13(234));
-Console.WriteLine(solutions.Integer14(234));
-Console.WriteLine(solutions.Integer15(123));
-Console.WriteLine(solutions.Integer16(1233));
-Console.WriteLine(solutions.Integer17(1233));
-Console.WriteLine(solutions.Integer18(1233));
-Console.WriteLine(solutions.Integer19(120));
-Console.WriteLine(solutions.Integer20(3630));
-Console.WriteLine(solutions.Integer21(63));
-Console.WriteLine(solutions.Integer22(3630));
-Console.WriteLine(solutions.Integer23(3630));
-Console.WriteLine(solutions.Integer24(364));
-Console.WriteLine(solutions.Integer25(364));
-Console.WriteLine(solutions.Integer26(364));
-Console.WriteLine(solutions.Integer27(364));
-Console.WriteLine(solutions.Integer28(363, 3));
-Console.WriteLine(solutions.Integer29(120, 130, 140));
-Console.WriteLine(solutions.Integer30(2001));
+solutions.Begin40(2, 3, 8, 1, -1, 1);
+Console.WriteLine(solutions.Bolean20(345));
+Console.WriteLine(solutions.Bolean33(3, 4, 5));
+Console.WriteLine(solutions.If19(5, 3, 3, 3));
+Console.WriteLine(solutions.For23(1, 5));
+Console.WriteLine(solutions.Proc14(3, 4, 5));
 
-Console.WriteLine(solutions.Boolean1(121));
-Console.WriteLine(solutions.Boolean2(121));
-Console.WriteLine(solutions.Boolean3(121));
-Console.WriteLine(solutions.Boolean4(1, 3));
-Console.WriteLine(solutions.Boolean5(1, -3));
-Console.WriteLine(solutions.Boolean6(1, 2, 3));
-Console.WriteLine(solutions.Boolean7(1, 2, 3));
-Console.WriteLine(solutions.Boolean8(1, 3));
-Console.WriteLine(solutions.Boolean9(1, 2));
-Console.WriteLine(solutions.Boolean10(1, 2));
-Console.WriteLine(solutions.Boolean11(1, 2));
-Console.WriteLine(solutions.Boolean12(1, 2, 3));
-Console.WriteLine(solutions.Boolean13(1, 2, 3));
-Console.WriteLine(solutions.Boolean14(1, 2, 3));
-Console.WriteLine(solutions.Boolean15(1, 2, 3));
-Console.WriteLine(solutions.Boolean16(121));
-Console.WriteLine(solutions.Boolean17(121));
-Console.WriteLine(solutions.Boolean18(1, 2, 3));
-Console.WriteLine(solutions.Boolean19(1, 2, 3));
-Console.WriteLine(solutions.Boolean20(121));
-Console.WriteLine(solutions.Boolean21(121));
-Console.WriteLine(solutions.Boolean22(121));
-Console.WriteLine(solutions.Boolean23(121));
-Console.WriteLine(solutions.Boolean24(1, 2, 3));
-Console.WriteLine(solutions.Boolean25(1, 2));
-Console.WriteLine(solutions.Boolean26(1, 2));
-Console.WriteLine(solutions.Boolean27(1, 2));
-Console.WriteLine(solutions.Boolean28(1, 2));
-Console.WriteLine(solutions.Boolean29(1, 2));
-Console.WriteLine(solutions.Boolean30(1, 2, 3));
-Console.WriteLine(solutions.Boolean31(1, 2, 3));
-Console.WriteLine(solutions.Boolean32(1, 2, 3));
-Console.WriteLine(solutions.Boolean33(1, 2, 3));
-Console.WriteLine(solutions.Boolean34(1, 2, 3));
-Console.WriteLine(solutions.Boolean35(1, 2));
-Console.WriteLine(solutions.Boolean36(1, 2, 3, 4));
-Console.WriteLine(solutions.Boolean37(1, 2, 3, 4));
-Console.WriteLine(solutions.Boolean38(1, 2, 3, 4));
-Console.WriteLine(solutions.Boolean39(1, 2, 3, 4));
-Console.WriteLine(solutions.Boolean40(1, 2, 3, 4));
+int[] array = { 1, 5, 2, 8, 7, 8, 3, 4, 8 };
+Console.WriteLine(solutions.MinMax17(array));
 
-Console.WriteLine(solutions.If1(1));
-Console.WriteLine(solutions.If2(2));
-Console.WriteLine(solutions.If19(1, 3, 3, 3));
-Console.WriteLine(solutions.If20(1, 3, 4));
-Console.WriteLine(solutions.If21(0, 0));
-Console.WriteLine(solutions.If22(2, 2));
-Console.WriteLine(solutions.If23(0, 0, 2, 2, 3, 3));
-Console.WriteLine(solutions.If24(5));
-Console.WriteLine(solutions.If25(6));
-Console.WriteLine(solutions.If26(7));
-Console.WriteLine(solutions.If27(8));
-Console.WriteLine(solutions.If28(1900));
-Console.WriteLine(solutions.If29(10));
-Console.WriteLine(solutions.If30(333));
+Point[] setA = { new Point(1, 2), new Point(3, 4), new Point(5, 6) };
+Point[] setB = { new Point(7, 8), new Point(9, 10), new Point(11, 12) };
+Console.WriteLine(solutions.Array135(setA, setB));
 
-solutions.Case12(3);
-solutions.Case13(3);
-solutions.Case14(4);
-solutions.Case14(4);
-solutions.Case18(456);
-solutions.Case19(2010);
+int[,] matrix = {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}
+    };
 
-Console.WriteLine(solutions.For20(3));
-Console.WriteLine(solutions.For21(3));
-Console.WriteLine(solutions.For22(3, 9));
-solutions.For27(0.5, 10);
-solutions.For28(0.5, 10);
-solutions.For29(1, 4, 5);
-solutions.For30(1, 4, 5);
-solutions.For31(4);
-solutions.For35(5);
+solutions.PrintMatrix(matrix);
 
+solutions.Matrix51(matrix);
 
-solutions.While11(1);
-solutions.While13(1.0);
-solutions.While14(1.0);
-solutions.While15(1.0);
-solutions.While17(189);
-solutions.While18(189);
-solutions.While19(189);
-solutions.While20(182);
-solutions.While22(182);
-solutions.While23(3, 5);
-Console.WriteLine(solutions.While24(4));
-Console.WriteLine(solutions.While25(4));
-solutions.While28(4);
-Console.WriteLine(solutions.While30(20, 40, 20));
+solutions.PrintMatrix(matrix);
 
+solutions.PrintUppercaseLetters(10);
 
-Console.WriteLine(solutions.MinMax8(new int[] { 2, 1, 2, 3 }));
-Console.WriteLine(solutions.MinMax10(new int[] { 2, 1, 2, 3 }));
-Console.WriteLine(solutions.MinMax16(new int[] { 2, 1, 2, 3 }));
-Console.WriteLine(solutions.MinMax21(new int[] { 2, 1, 2, 3 }));
-Console.WriteLine(solutions.MinMax26(new int[] { 2, 2, 3, 4, 4, 4 }));
-Console.WriteLine(solutions.MinMax27(new int[] { 0, 0, 0, 1, 1, 1, 1, 0, 0, 0  }));
-*/
+List<Point> points = new List<Point>
+        {
+            new Point(1, 2),
+            new Point(3, 4),
+            new Point(5, 6),
+            new Point(7, 8),
+            new Point(9, 10)
+        };
 
-solutions.Array10(new int[] { 1, 2, 3, 4, 5, 6, 7, 8 });
-Console.WriteLine(solutions.Array18(new int[] { 11, 22, 33, 44, 55, 6, 77, 88, 99, 10 }));
-Console.WriteLine(solutions.Array19(new int[] { 3, 22, 33, 44, 55, 6, 77, 88, 99, 10 }));
-Console.WriteLine(solutions.Array20(new int[] { 2, 2, 3, 4, 4, 4 }, 1, 3));
-Console.WriteLine(solutions.Array21(new int[] { 2, 2, 3, 4, 4, 4 }, 1, 5));
-Console.WriteLine(solutions.Array22(new int[] { 2, 2, 3, 4, 5, 5 }, 2, 3));
-Console.WriteLine(solutions.Array23(new int[] { 2, 2, 3, 4, 5, 5 }, 2, 3));
-Console.WriteLine(solutions.Array24(new int[] { 1, 2, 3, 4, 5, 6 }));
-Console.WriteLine(solutions.Array25(new int[] { 2, 4, 8, 16, 32 }));
-Console.WriteLine(solutions.Array26(new int[] { 1, 2, 1, 2, 1, 2 }));
-Console.WriteLine(solutions.Array28(new int[] { 1, 4, 1, 2, 1, 8 }));
-solutions.Array30(new int[] { 2, 2, 3, 4, 4, 4 });
-Console.WriteLine(solutions.Array32(new int[] { 1, 4, 1, 2, 1, 8 }));
-Console.WriteLine(solutions.Array34(new int[] { 1, 4, 1, 2, 1, 8 }));
-Console.WriteLine(solutions.Array36(new int[] { 10, 9, 8, 7, 6, 4, 5, 4, 3, 2}));
-Console.WriteLine(solutions.Array38(new int[] { 10, 9, 8, 7, 6, 4, 5, 4, 3, 2}));
-Console.WriteLine(solutions.Array40(new int[] { 10, 9, 8, 7, 6, 4, 5, 4, 3, 2}, 11));
-Console.WriteLine(solutions.Array42(new int[] { 10, 9, 8, 7, 6, 4, 5, 4, 3, 2}, 11));
-Console.WriteLine(solutions.Array44(new int[] { 1, 2, 8, 7, 7, 4, 5, 8, 8, 2}));
-Console.WriteLine(solutions.Array48(new int[] { 10, 10, 8, 7, 7, 4, 5, 8, 8, 2}));
-Console.WriteLine(solutions.Array50(new int[] { 1, 2, 3, 7, 4, 8 }));
-solutions.Array52(new int[] { 1, 2, 3, 7, 4, 8 });
-solutions.Array54(new int[] { 1, 2, 3, 7, 4, 8 });
-solutions.Array58(new int[] { 1, 2, 3, 7, 4, 8 });
-solutions.Array62(new int[] { 1, -2, 3, -3, 4, 8 });
-solutions.Array70(new int[] { 1, 2, 3, 5, 4, 8 });
-solutions.Array74(new int[] { 1, 2, 3, 5, 4, 8 });
-solutions.Array76(new int[] { 1, 2, 3, 5, 4, 8 });
-solutions.Array80(new int[] { 1, 2, 3, 5, 4, 8 });
+double x0 = 4;
+double y0 = 5;
+double R = 3;
+
+List<Point> pointsWithinDistance = solutions.Task12(points, new Point(x0, y0), R);
+foreach (var point in pointsWithinDistance)
+{
+    double distance = new Point(x0, y0).DistanceTo(point);
+    Console.WriteLine($"Point: {point}, Distance: {distance}");
+}
