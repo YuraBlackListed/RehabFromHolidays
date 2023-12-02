@@ -2,50 +2,37 @@
 
 Solutions solutions = new Solutions();
 
-solutions.Begin40(2, 3, 8, 1, -1, 1);
-Console.WriteLine(solutions.Bolean20(345));
-Console.WriteLine(solutions.Bolean33(3, 4, 5));
-Console.WriteLine(solutions.If19(5, 3, 3, 3));
-Console.WriteLine(solutions.For23(1, 5));
-Console.WriteLine(solutions.Proc14(3, 4, 5));
+var squares = solutions.For14().Take(1);
 
-int[] array = { 1, 5, 2, 8, 7, 8, 3, 4, 8 };
-Console.WriteLine(solutions.MinMax17(array));
-
-Point[] setA = { new Point(1, 2), new Point(3, 4), new Point(5, 6) };
-Point[] setB = { new Point(7, 8), new Point(9, 10), new Point(11, 12) };
-Console.WriteLine(solutions.Array135(setA, setB));
-
-int[,] matrix = {
-        {1, 2, 3},
-        {4, 5, 6},
-        {7, 8, 9}
-    };
-
-solutions.PrintMatrix(matrix);
-
-solutions.Matrix51(matrix);
-
-solutions.PrintMatrix(matrix);
-
-solutions.PrintUppercaseLetters(10);
-
-List<Point> points = new List<Point>
-        {
-            new Point(1, 2),
-            new Point(3, 4),
-            new Point(5, 6),
-            new Point(7, 8),
-            new Point(9, 10)
-        };
-
-double x0 = 4;
-double y0 = 5;
-double R = 3;
-
-List<Point> pointsWithinDistance = solutions.Task12(points, new Point(x0, y0), R);
-foreach (var point in pointsWithinDistance)
+foreach (var square in squares)
 {
-    double distance = new Point(x0, y0).DistanceTo(point);
-    Console.WriteLine($"Point: {point}, Distance: {distance}");
+    Console.WriteLine(square);
+}
+Console.WriteLine(solutions.For23(2, 3));
+int[] series25numbers = new int[] {1030, 2030, 3020, 4020, 5030};
+Console.WriteLine(solutions.Series25(series25numbers));
+
+int[] minmax24numbers = new int[] {1, 2, 10, 9, 3 };
+Console.WriteLine(solutions.Minmax24(minmax24numbers));
+
+int[] minmax26numbers = new int[] {1, 2, 10, 2, 3 };
+Console.WriteLine(solutions.Minmax26(minmax26numbers));
+
+int[] array17numbers = new int[] {1, 2, 10, 2, 3 };
+foreach (int number in solutions.Array17(array17numbers))
+{
+    Console.WriteLine(number);
+}
+
+int[] array25numbers = new int[] { 2, 4, 8, 16, 32 };
+Console.WriteLine(solutions.Array25(array25numbers));
+
+int[] array48numbers = new int[] { 2, 2, 2, 16, 32 };
+Console.WriteLine(solutions.Array48(array48numbers));
+
+int[] array66numbers = new int[] { 2, 2, 2, 16, 32 };
+solutions.IncreaseEvenNumbers(array66numbers);
+foreach (int number in array66numbers)
+{
+    Console.WriteLine(number);
 }

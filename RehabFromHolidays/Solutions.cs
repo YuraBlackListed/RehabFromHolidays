@@ -40,189 +40,261 @@ namespace RehabFromHolidays
             int hundreds = input / 100;
             return (units, dozens, hundreds);
         }
-        public void Begin40(int a1, int b1, int c1, int a2, int b2, int c2)
+        public IEnumerable<int> For14()
         {
-            int D = a1 * b2 - a2 * b1;
+            int currentSum = 0;
+            int i = 1;
 
-            if (D != 0)
+            while (true)
             {
-                double x = (c1 * b2 - c2 * b1) / D;
-                double y = (a1 * c2 - a2 * c1) / D;
+                int term = 2 * i - 1;
 
-                Console.WriteLine($"Solution to the system: x = {x}, y = {y}");
+                currentSum += term;
+
+                yield return currentSum;
+
+                i++;
             }
-            else
+        }
+        public double For23(int x, int n) 
+            => CalculateSinApproximation(x, n);
+
+        static double CalculateSinApproximation(double X, int N)
+        {
+            double result = 0;
+
+            for (int i = 0; i < N; i++)
             {
-                Console.WriteLine("The system does not have a unique solution.");
-            }
-        }
-
-        public bool Bolean20(int number)
-        {
-            int digit1 = number % 10;
-            int digit2 = (number / 10) % 10;
-            int digit3 = number / 100;
-
-            return digit1 != digit2 && digit1 != digit3 && digit2 != digit3;
-        }
-
-        public bool Bolean33(int a, int b, int c)
-            => a + b > c && a + c > b && b + c > a;
-
-        public int If19(int a, int b, int c, int d)
-        {
-            if (a == b && a == c && a != d)
-                return 4;
-            else if (a == b && a == d && a != c)
-                return 3;
-            else if (a == c && a == d && a != b)
-                return 2;
-            else
-                return 1;
-        }
-        public double For23(int x, int n)
-        {
-            double sum = 0;
-
-            for (int i = 0; i <= n; i++)
-            {
-                double term = Math.Pow(-1, i) * Math.Pow(x, 2 * i + 1) / Factorial(2 * i + 1);
-                sum += term;
+                int denominator = 2 * i + 1;
+                double term = Math.Pow(-1, i) * Math.Pow(X, denominator) / Factorial(denominator);
+                result += term;
             }
 
-            return sum;
+            return result;
         }
-        private double Factorial (int n)
+
+        static int Factorial(int n)
         {
             if (n == 0 || n == 1)
                 return 1;
 
-            double result = 1;
-            for (int i = 2; i <= n; i++)
+            return n * Factorial(n - 1);
+        }
+
+        public int reversedNumber(int n)
+            => ReverseNumber(n);
+
+        static int ReverseNumber(int number)
+        {
+            int reversedNumber = 0;
+
+            while (number > 0)
             {
-                result *= i;
+                int digit = number % 10;
+                reversedNumber = reversedNumber * 10 + digit;
+                number = number / 10;
             }
 
-            return result;
+            return reversedNumber;
         }
-        public (int, int, int) Proc14(int a, int b, int c)
-            => (c, a, b); // or
-        public void Proc14Again(ref int a, ref int b, ref int c)
+        public int Series25(int[] numbers)
+            => SumBetweenZeros(numbers);
+        static bool AllNumbersHaveTwoZeros(int[] array)
         {
-            int temp = a;
-            a = c;
-            c = b;
-            b = temp;
+            foreach (int number in array)
+            {
+                int zeroCount = CountZeros(number);
+
+                if (zeroCount < 2)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+        static int CountZeros(int num)
+        {
+            string numAsString = num.ToString();
+            int zeroCount = 0;
+
+            foreach (char digit in numAsString)
+            {
+                if (digit == '0')
+                {
+                    zeroCount++;
+                }
+            }
+
+            return zeroCount;
+        }
+        static int SumBetweenZeros(int[] array)
+        {
+            if (AllNumbersHaveTwoZeros(array))
+            {
+                int sum = 0;
+                foreach(int number in array)
+                {
+                    sum += FindNumbersBetweenZeros(number.ToString());
+                }
+
+                return sum;
+            }
+            Console.WriteLine("all numbers must have at least two '0'"); 
+            return 0;
+        }
+        static int FindNumbersBetweenZeros(string input)
+        {
+            int startIndex = input.IndexOf('0');
+            int endIndex = input.LastIndexOf('0');
+
+            if (startIndex != -1 && endIndex != -1 && startIndex < endIndex)
+            {
+                string substring = input.Substring(startIndex + 1, endIndex - startIndex - 1);
+
+                if (int.TryParse(substring, out int result))
+                {
+                    return result;
+                }
+            }
+
+            return -1;
+        }
+        public int Minmax24(int[] array)
+            => FindMaxSum(array);
+        static int FindMaxSum(int[] array)
+        {
+            int maxSum = int.MinValue;
+
+            for (int i = 0; i < array.Length - 1; i++)
+            {
+                int currentSum = array[i] + array[i + 1];
+                maxSum = Math.Max(maxSum, currentSum);
+            }
+
+            return maxSum;
         }
 
-        public int MinMax17(int[] array)
+        public int Minmax26(int[] array)
+            => FindMaxEvenSequenceLength(array);
+        static int FindMaxEvenSequenceLength(int[] array)
+        {
+            int currentSequenceLength = 0;
+            int maxSequenceLength = 0;
+
+            foreach (int num in array)
+            {
+                if (num % 2 == 0)
+                {
+                    currentSequenceLength++;
+                    if (currentSequenceLength > maxSequenceLength)
+                    {
+                        maxSequenceLength = currentSequenceLength;
+                    }
+                }
+                else
+                {
+                    currentSequenceLength = 0;
+                }
+            }
+
+            return maxSequenceLength;
+        }
+
+        public int[] Array17(int[] array)
+            => ReorderArray(array);
+        static int[] ReorderArray(int[] array)
+        {
+            int[] reorderedArray = new int[array.Length];
+            int index = 0;
+
+            for (int i = 0; i < array.Length / 2; i++)
+            {
+                reorderedArray[index++] = array[i];
+                reorderedArray[index++] = array[array.Length - 1 - i];
+            }
+
+            if (array.Length % 2 != 0)
+            {
+                reorderedArray[index] = array[array.Length / 2];
+            }
+
+            return reorderedArray;
+        }
+        public int Array25(int[] array)
+            => CheckGeometricProgression(array);
+        static int CheckGeometricProgression(int[] array)
+        {
+            if (array.Length < 2)
+            {
+                return 0;
+            }
+
+            int commonRatio = array[1] / array[0];
+
+            for (int i = 1; i < array.Length - 1; i++)
+            {
+                if (array[i + 1] / array[i] != commonRatio)
+                {
+                    return 0;
+                }
+            }
+
+            return commonRatio;
+        }
+        public int Array48(int[] array)
+            => FindMaxIdenticalElementsCount(array);
+        static int FindMaxIdenticalElementsCount(int[] array)
         {
             if (array.Length == 0)
+            {
                 return 0;
-
-            int maxIndex = 0;
-
-            for (int i = 1; i < array.Length; i++)
-            {
-                if (array[i] >= array[maxIndex])
-                    maxIndex = i;
             }
 
-            return array.Length - 1 - maxIndex;
-        }
+            Dictionary<int, int> elementCount = new Dictionary<int, int>();
 
-        public (double, Point, Point) Array135(Point[] setA, Point[] setB)
-        {
-            double minDistance = double.MaxValue;
-
-            foreach (var point1 in setA)
+            foreach (int num in array)
             {
-                foreach (var point2 in setB)
+                if (elementCount.ContainsKey(num))
                 {
-                    double distance = point1.DistanceTo(point2);
+                    elementCount[num]++;
+                }
+                else
+                {
+                    elementCount[num] = 1;
+                }
+            }
 
-                    if (distance < minDistance)
+            int maxCount = elementCount.Values.Max();
+
+            return maxCount;
+        }
+        public void IncreaseEvenNumbers(int[] array)
+        {
+            int firstEven = FindFirstEvenNumber(array);
+
+            if (firstEven != -1)
+            {
+                for (int i = 0; i < array.Length; i++)
+                {
+                    if (array[i] % 2 == 0)
                     {
-                        minDistance = distance;
-                        return (distance, point1, point2);
+                        array[i] += firstEven;
                     }
                 }
             }
-            return (0, null, null);
         }
 
-
-        public void Matrix51(int[,] matrix)
+        static int FindFirstEvenNumber(int[] array)
         {
-            int minRowIndex = 0, maxRowIndex = 0;
-            int minValue = matrix[0, 0], maxValue = matrix[0, 0];
-
-            for (int i = 0; i < matrix.GetLength(0); i++)
+            foreach (int num in array)
             {
-                for (int j = 0; j < matrix.GetLength(1); j++)
+                if (num % 2 == 0)
                 {
-                    if (matrix[i, j] < minValue)
-                    {
-                        minValue = matrix[i, j];
-                        minRowIndex = i;
-                    }
-
-                    if (matrix[i, j] > maxValue)
-                    {
-                        maxValue = matrix[i, j];
-                        maxRowIndex = i;
-                    }
+                    return num;
                 }
             }
-
-            for (int j = 0; j < matrix.GetLength(1); j++)
-            {
-                int temp = matrix[minRowIndex, j];
-                matrix[minRowIndex, j] = matrix[maxRowIndex, j];
-                matrix[maxRowIndex, j] = temp;
-            }
-        }
-
-        public void PrintMatrix(int[,] matrix)
-        {
-            for (int i = 0; i < matrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < matrix.GetLength(1); j++)
-                {
-                    Console.Write(matrix[i, j] + " ");
-                }
-                Console.WriteLine();
-            }
-        }
-
-
-        public void PrintUppercaseLetters(int N)
-        {
-            char startLetter = 'A';
-
-            for (int i = 0; i < N; i++)
-            {
-                char currentLetter = (char)(startLetter + i);
-                Console.WriteLine(currentLetter + " ");
-            }
-        }
-        public List<Point> Task12(List<Point> points, Point center, double distance)
-        {
-            List<Point> result = new List<Point>();
-
-            foreach (var point in points)
-            {
-                double distanceToCenter = point.DistanceTo(center);
-
-                if (distanceToCenter < distance)
-                {
-                    result.Add(point);
-                }
-            }
-
-            return result;
+            return -1;
         }
     }   
-    
-
 }
