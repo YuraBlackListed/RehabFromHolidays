@@ -44,7 +44,7 @@ foreach (int number in array77numbers)
     Console.WriteLine(number);
 }
 
-
+//Array134
 Point[] points = new Point[] { new Point(1, 2), new Point(3, 4), new Point(10, 40), new Point(10, 40) };
 
 Tuple<Point, Point, double> result = solutions.FindMaxDistancePoints(points);
@@ -53,3 +53,6 @@ Console.WriteLine("Pair of points with maximum distance:");
 Console.WriteLine($"Point 1: {result.Item1}");
 Console.WriteLine($"Point 2: {result.Item2}");
 Console.WriteLine($"Maximum distance: {result.Item3}");
+
+string String10 = "reziaK";
+Console.WriteLine(solutions.ReverseString(String10));

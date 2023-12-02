@@ -330,5 +330,12 @@ namespace RehabFromHolidays
 
             return Tuple.Create(maxPoint1, maxPoint2, maxDistance);
         }
+
+        public string ReverseString(string input)
+        {
+            char[] charArray = input.ToCharArray();
+            Array.Reverse(charArray);
+            return new string(charArray);
+        }
     }   
 }
