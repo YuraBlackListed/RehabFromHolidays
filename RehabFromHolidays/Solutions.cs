@@ -296,5 +296,39 @@ namespace RehabFromHolidays
             }
             return -1;
         }
+        public void SquareLocalMinimum(int[] array)
+        {
+            for (int i = 1; i < array.Length - 1; i++)
+            {
+                if (array[i] < array[i - 1] && array[i] < array[i + 1])
+                {
+                    array[i] *= array[i];
+                }
+            }
+        }
+
+        public Tuple<Point, Point, double> FindMaxDistancePoints(Point[] points)
+        {
+            Point maxPoint1 = null;
+            Point maxPoint2 = null;
+            double maxDistance = 0;
+
+            for (int i = 0; i < points.Length; i++)
+            {
+                for (int j = i + 1; j < points.Length; j++)
+                {
+                    double distance = points[i].DistanceTo(points[j]);
+
+                    if (distance > maxDistance)
+                    {
+                        maxDistance = distance;
+                        maxPoint1 = points[i];
+                        maxPoint2 = points[j];
+                    }
+                }
+            }
+
+            return Tuple.Create(maxPoint1, maxPoint2, maxDistance);
+        }
     }   
 }

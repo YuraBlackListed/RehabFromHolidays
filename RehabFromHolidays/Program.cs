@@ -36,3 +36,20 @@ foreach (int number in array66numbers)
 {
     Console.WriteLine(number);
 }
+
+int[] array77numbers = new int[] { 4, 3, 2, 16, 3, 4 };
+solutions.SquareLocalMinimum(array77numbers);
+foreach (int number in array77numbers)
+{
+    Console.WriteLine(number);
+}
+
+
+Point[] points = new Point[] { new Point(1, 2), new Point(3, 4), new Point(10, 40), new Point(10, 40) };
+
+Tuple<Point, Point, double> result = solutions.FindMaxDistancePoints(points);
+
+Console.WriteLine("Pair of points with maximum distance:");
+Console.WriteLine($"Point 1: {result.Item1}");
+Console.WriteLine($"Point 2: {result.Item2}");
+Console.WriteLine($"Maximum distance: {result.Item3}");
