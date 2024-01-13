@@ -1,58 +1,80 @@
 ﻿using RehabFromHolidays;
+#region N1
+Point vertex1 = new Point(0, 0);
+Point vertex2 = new Point(6, 0);
+Point vertex3 = new Point(3, 3);
 
-Solutions solutions = new Solutions();
+Triangle triangle = new Triangle(vertex1, vertex2, vertex3);
 
-var squares = solutions.For14().Take(1);
+double height = triangle.HeightFromVertex3();
 
-foreach (var square in squares)
+Console.WriteLine(height);
+#endregion
+
+#region N2
+int[] numbers = { 123, 234, 345, 456, 567, 678, 789, 987, 876, 765 };
+
+int count = numbers.CountIncreasingNumbers();
+
+Console.WriteLine(count);
+#endregion
+
+#region N3
+Point pointA = new Point(1, 1);
+Point pointB = new Point(2, 3);
+
+bool canReach = Point.CanKnightReach(pointA, pointB);
+
+Console.WriteLine(canReach);
+#endregion
+
+#region For24
+double x = 12;
+
+int n = 10;
+
+double result = x.CalculateCosApproximation(n);
+Console.WriteLine(result);
+#endregion
+
+#region While21
+int k = 2223;
+
+bool hasOddDigits = k.CheckForOddDigits();
+
+Console.WriteLine(hasOddDigits);
+#endregion
+
+#region N6
+List<int> listOfNumbers = new List<int> { 5, 3, 8, 1, 7 };
+
+List<int> sortedNumbers = listOfNumbers.SortAscending();
+
+foreach (int num in sortedNumbers)
 {
-    Console.WriteLine(square);
+    Console.Write(num + " ");
 }
-Console.WriteLine(solutions.For23(2, 3));
-int[] series25numbers = new int[] {1030, 2030, 3020, 4020, 5030};
-Console.WriteLine(solutions.Series25(series25numbers));
+#endregion
 
-int[] minmax24numbers = new int[] {1, 2, 10, 9, 3 };
-Console.WriteLine(solutions.Minmax24(minmax24numbers));
+#region N7
+string time1Input = "23:39:22";
 
-int[] minmax26numbers = new int[] {1, 2, 10, 2, 3 };
-Console.WriteLine(solutions.Minmax26(minmax26numbers));
+string time2Input = "22:22:22";
 
-int[] array17numbers = new int[] {1, 2, 10, 2, 3 };
-foreach (int number in solutions.Array17(array17numbers))
+try
 {
-    Console.WriteLine(number);
+    string sumTime = time1Input.AddTime(time2Input);
+    Console.WriteLine(sumTime);
 }
-
-int[] array25numbers = new int[] { 2, 4, 8, 16, 32 };
-Console.WriteLine(solutions.Array25(array25numbers));
-
-int[] array48numbers = new int[] { 2, 2, 2, 16, 32 };
-Console.WriteLine(solutions.Array48(array48numbers));
-
-int[] array66numbers = new int[] { 2, 2, 2, 16, 32 };
-solutions.IncreaseEvenNumbers(array66numbers);
-foreach (int number in array66numbers)
+catch (FormatException ex)
 {
-    Console.WriteLine(number);
+    Console.WriteLine($"Error: {ex.Message}");
 }
+#endregion
 
-int[] array77numbers = new int[] { 4, 3, 2, 16, 3, 4 };
-solutions.SquareLocalMinimum(array77numbers);
-foreach (int number in array77numbers)
-{
-    Console.WriteLine(number);
-}
+#region MinMax20
+int[] extremalNumbersArray = { 4, 7, 2, 9, 3 }; 
 
-//Array134
-Point[] points = new Point[] { new Point(1, 2), new Point(3, 4), new Point(10, 40), new Point(10, 40) };
-
-Tuple<Point, Point, double> result = solutions.FindMaxDistancePoints(points);
-
-Console.WriteLine("Pair of points with maximum distance:");
-Console.WriteLine($"Point 1: {result.Item1}");
-Console.WriteLine($"Point 2: {result.Item2}");
-Console.WriteLine($"Maximum distance: {result.Item3}");
-
-string String10 = "reziaK";
-Console.WriteLine(solutions.ReverseString(String10));
+int extremalCount = extremalNumbersArray.CountExtremalElements();
+Console.WriteLine(extremalCount);
+#endregion

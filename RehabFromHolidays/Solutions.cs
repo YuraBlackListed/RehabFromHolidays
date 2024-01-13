@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -28,84 +29,75 @@ namespace RehabFromHolidays
         {
             return Math.Sqrt(Math.Pow(X - other.X, 2) + Math.Pow(Y - other.Y, 2));
         }
+        public static bool CanKnightReach(Point pointA, Point pointB)
+        {
+            int deltaX = (int)Math.Abs(pointA.X - pointB.X);
+            int deltaY = (int)Math.Abs(pointA.Y - pointB.Y);
+
+            return (deltaX == 1 && deltaY == 2) || (deltaX == 2 && deltaY == 1);
+        }
     }
-
-
-    public class Solutions
+    public class Triangle
     {
-        private (int, int, int) CalculateDigits(int input)
+        public Point Vertex1 { get; }
+        public Point Vertex2 { get; }
+        public Point Vertex3 { get; }
+
+        public Triangle(Point v1, Point v2, Point v3)
         {
-            int units = input % 10;
-            int dozens = input % 100 / 10;
-            int hundreds = input / 100;
-            return (units, dozens, hundreds);
-        }
-        public IEnumerable<int> For14()
-        {
-            int currentSum = 0;
-            int i = 1;
-
-            while (true)
-            {
-                int term = 2 * i - 1;
-
-                currentSum += term;
-
-                yield return currentSum;
-
-                i++;
-            }
-        }
-        public double For23(int x, int n) 
-            => CalculateSinApproximation(x, n);
-
-        static double CalculateSinApproximation(double X, int N)
-        {
-            double result = 0;
-
-            for (int i = 0; i < N; i++)
-            {
-                int denominator = 2 * i + 1;
-                double term = Math.Pow(-1, i) * Math.Pow(X, denominator) / Factorial(denominator);
-                result += term;
-            }
-
-            return result;
+            Vertex1 = v1;
+            Vertex2 = v2;
+            Vertex3 = v3;
         }
 
-        static int Factorial(int n)
+        public double SideLength(Point p1, Point p2)
         {
-            if (n == 0 || n == 1)
-                return 1;
-
-            return n * Factorial(n - 1);
+            return p1.DistanceTo(p2);
         }
 
-        public int reversedNumber(int n)
-            => ReverseNumber(n);
-
-        static int ReverseNumber(int number)
+        public double Area()
         {
-            int reversedNumber = 0;
+            double a = SideLength(Vertex2, Vertex3);
+            double b = SideLength(Vertex1, Vertex3);
+            double c = SideLength(Vertex1, Vertex2);
 
-            while (number > 0)
-            {
-                int digit = number % 10;
-                reversedNumber = reversedNumber * 10 + digit;
-                number = number / 10;
-            }
+            double s = 0.5 * (a + b + c);
 
-            return reversedNumber;
+            return Math.Sqrt(s * (s - a) * (s - b) * (s - c));
         }
-        public int Series25(int[] numbers)
-            => SumBetweenZeros(numbers);
-        static bool AllNumbersHaveTwoZeros(int[] array)
+
+        public double HeightFromVertex3()
         {
+            double area = Area();
+            double distanceToOppositeSide = SideLength(Vertex1, Vertex2);
+
+            return 2 * area / distanceToOppositeSide;
+        }
+    }
+    public static class ArrayExtensions
+    {
+        public static int CountIncreasingNumbers(this int[] array)
+        {
+            int count = 0;
+
             foreach (int number in array)
             {
-                int zeroCount = CountZeros(number);
+                if (IsIncreasingNumber(number))
+                {
+                    count++;
+                }
+            }
 
-                if (zeroCount < 2)
+            return count;
+        }
+
+        private static bool IsIncreasingNumber(int number)
+        {
+            int[] digits = number.ToString().Select(c => Convert.ToInt32(c.ToString())).ToArray();
+
+            for (int i = 0; i < digits.Length - 1; i++)
+            {
+                if (digits[i] >= digits[i + 1])
                 {
                     return false;
                 }
@@ -113,229 +105,101 @@ namespace RehabFromHolidays
 
             return true;
         }
-        static int CountZeros(int num)
-        {
-            string numAsString = num.ToString();
-            int zeroCount = 0;
-
-            foreach (char digit in numAsString)
-            {
-                if (digit == '0')
-                {
-                    zeroCount++;
-                }
-            }
-
-            return zeroCount;
-        }
-        static int SumBetweenZeros(int[] array)
-        {
-            if (AllNumbersHaveTwoZeros(array))
-            {
-                int sum = 0;
-                foreach(int number in array)
-                {
-                    sum += FindNumbersBetweenZeros(number.ToString());
-                }
-
-                return sum;
-            }
-            Console.WriteLine("all numbers must have at least two '0'"); 
-            return 0;
-        }
-        static int FindNumbersBetweenZeros(string input)
-        {
-            int startIndex = input.IndexOf('0');
-            int endIndex = input.LastIndexOf('0');
-
-            if (startIndex != -1 && endIndex != -1 && startIndex < endIndex)
-            {
-                string substring = input.Substring(startIndex + 1, endIndex - startIndex - 1);
-
-                if (int.TryParse(substring, out int result))
-                {
-                    return result;
-                }
-            }
-
-            return -1;
-        }
-        public int Minmax24(int[] array)
-            => FindMaxSum(array);
-        static int FindMaxSum(int[] array)
-        {
-            int maxSum = int.MinValue;
-
-            for (int i = 0; i < array.Length - 1; i++)
-            {
-                int currentSum = array[i] + array[i + 1];
-                maxSum = Math.Max(maxSum, currentSum);
-            }
-
-            return maxSum;
-        }
-
-        public int Minmax26(int[] array)
-            => FindMaxEvenSequenceLength(array);
-        static int FindMaxEvenSequenceLength(int[] array)
-        {
-            int currentSequenceLength = 0;
-            int maxSequenceLength = 0;
-
-            foreach (int num in array)
-            {
-                if (num % 2 == 0)
-                {
-                    currentSequenceLength++;
-                    if (currentSequenceLength > maxSequenceLength)
-                    {
-                        maxSequenceLength = currentSequenceLength;
-                    }
-                }
-                else
-                {
-                    currentSequenceLength = 0;
-                }
-            }
-
-            return maxSequenceLength;
-        }
-
-        public int[] Array17(int[] array)
-            => ReorderArray(array);
-        static int[] ReorderArray(int[] array)
-        {
-            int[] reorderedArray = new int[array.Length];
-            int index = 0;
-
-            for (int i = 0; i < array.Length / 2; i++)
-            {
-                reorderedArray[index++] = array[i];
-                reorderedArray[index++] = array[array.Length - 1 - i];
-            }
-
-            if (array.Length % 2 != 0)
-            {
-                reorderedArray[index] = array[array.Length / 2];
-            }
-
-            return reorderedArray;
-        }
-        public int Array25(int[] array)
-            => CheckGeometricProgression(array);
-        static int CheckGeometricProgression(int[] array)
-        {
-            if (array.Length < 2)
-            {
-                return 0;
-            }
-
-            int commonRatio = array[1] / array[0];
-
-            for (int i = 1; i < array.Length - 1; i++)
-            {
-                if (array[i + 1] / array[i] != commonRatio)
-                {
-                    return 0;
-                }
-            }
-
-            return commonRatio;
-        }
-        public int Array48(int[] array)
-            => FindMaxIdenticalElementsCount(array);
-        static int FindMaxIdenticalElementsCount(int[] array)
+        public static int CountExtremalElements(this int[] array)
         {
             if (array.Length == 0)
             {
                 return 0;
             }
 
-            Dictionary<int, int> elementCount = new Dictionary<int, int>();
+            int min = array[0];
+            int max = array[0];
 
-            foreach (int num in array)
+            foreach (int number in array)
             {
-                if (elementCount.ContainsKey(num))
+                if (number < min)
                 {
-                    elementCount[num]++;
+                    min = number;
                 }
-                else
+
+                if (number > max)
                 {
-                    elementCount[num] = 1;
+                    max = number;
                 }
             }
 
-            int maxCount = elementCount.Values.Max();
+            int extremalCount = 0;
 
-            return maxCount;
-        }
-        public void IncreaseEvenNumbers(int[] array)
-        {
-            int firstEven = FindFirstEvenNumber(array);
-
-            if (firstEven != -1)
+            foreach (int number in array)
             {
-                for (int i = 0; i < array.Length; i++)
+                if (number == min || number == max)
                 {
-                    if (array[i] % 2 == 0)
-                    {
-                        array[i] += firstEven;
-                    }
-                }
-            }
-        }
-
-        static int FindFirstEvenNumber(int[] array)
-        {
-            foreach (int num in array)
-            {
-                if (num % 2 == 0)
-                {
-                    return num;
-                }
-            }
-            return -1;
-        }
-        public void SquareLocalMinimum(int[] array)
-        {
-            for (int i = 1; i < array.Length - 1; i++)
-            {
-                if (array[i] < array[i - 1] && array[i] < array[i + 1])
-                {
-                    array[i] *= array[i];
-                }
-            }
-        }
-
-        public Tuple<Point, Point, double> FindMaxDistancePoints(Point[] points)
-        {
-            Point maxPoint1 = null;
-            Point maxPoint2 = null;
-            double maxDistance = 0;
-
-            for (int i = 0; i < points.Length; i++)
-            {
-                for (int j = i + 1; j < points.Length; j++)
-                {
-                    double distance = points[i].DistanceTo(points[j]);
-
-                    if (distance > maxDistance)
-                    {
-                        maxDistance = distance;
-                        maxPoint1 = points[i];
-                        maxPoint2 = points[j];
-                    }
+                    extremalCount++;
                 }
             }
 
-            return Tuple.Create(maxPoint1, maxPoint2, maxDistance);
+            return extremalCount;
         }
-
-        public string ReverseString(string input)
+    }
+    public static class SpecialNumberExtensions
+    {
+        public static double CalculateCosApproximation(this double X, int N)
         {
-            char[] charArray = input.ToCharArray();
-            Array.Reverse(charArray);
-            return new string(charArray);
+            double sum = 1.0;
+            double term = 1.0;
+
+            for (int i = 1; i <= N; i++)
+            {
+                term *= -X * X / ((2 * i) * (2 * i - 1));
+                sum += term;
+            }
+
+            return sum;
         }
-    }   
+        public static bool CheckForOddDigits(this int number)
+        {
+            while (number > 0)
+            {
+                int digit = number % 10;
+                if (digit % 2 != 0)
+                {
+                    return true;
+                }
+
+                number /= 10;
+            }
+
+            return false;
+        }
+    }
+    public static class ListExtensions
+    {
+        public static List<T> SortAscending<T>(this List<T> list) where T : IComparable<T>
+        {
+            list.Sort();
+            return list;
+        }
+    }
+    public static class StringExtensions
+    {
+        public static string AddTime(this string time1, string time2)
+        {
+            TimeSpan span1, span2;
+
+            if (!TimeSpan.TryParse(time1, out span1) || !TimeSpan.TryParse(time2, out span2))
+            {
+                throw new FormatException("Wrong time format. Use HH:MM:SS.");
+            }
+
+            TimeSpan sum = span1.Add(span2);
+
+            int days = sum.Days;
+            int hours = sum.Hours % 24;
+            int minutes = sum.Minutes;
+            int seconds = sum.Seconds;
+
+            return $"{days * 24 + hours:D2}:{minutes:D2}:{seconds:D2}";
+        }
+    }
+
 }
